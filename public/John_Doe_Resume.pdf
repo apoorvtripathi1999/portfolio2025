@@ -1,0 +1,12 @@
+# Sample Resume File
+
+This is a placeholder resume file. In a real implementation, you would place your actual resume files here:
+
+- John_Doe_Resume.pdf
+- John_Doe_Resume.docx
+
+These files would be accessible via:
+- /John_Doe_Resume.pdf
+- /John_Doe_Resume.docx
+
+Make sure to update the file paths in ResumeContent.jsx to match your actual file locations.

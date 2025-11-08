@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="32" height="32" fill="#FF0080" rx="4"/>
+  
+  <!-- YouTube Play Button Background -->
+  <rect x="4" y="8" width="24" height="16" fill="#FF0000" stroke="#FFFFFF" stroke-width="2" rx="2"/>
+  
+  <!-- Play Triangle -->
+  <polygon points="12,12 12,20 20,16" fill="#FFFFFF"/>
+  
+  <!-- YouTube Text Simulation -->
+  <rect x="6" y="26" width="3" height="2" fill="#FFFFFF"/>
+  <rect x="10" y="26" width="6" height="2" fill="#FFFFFF"/>
+  <rect x="17" y="26" width="4" height="2" fill="#FFFFFF"/>
+  <rect x="22" y="26" width="4" height="2" fill="#FFFFFF"/>
+</svg>

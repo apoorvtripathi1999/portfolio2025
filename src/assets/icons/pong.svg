@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="32" height="32" fill="#FF0055" rx="4"/>
+  
+  <!-- Game Field Border -->
+  <rect x="2" y="4" width="28" height="24" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  
+  <!-- Left Paddle -->
+  <rect x="4" y="10" width="2" height="12" fill="#00FFFF"/>
+  
+  <!-- Right Paddle -->
+  <rect x="26" y="10" width="2" height="12" fill="#00FFFF"/>
+  
+  <!-- Ball -->
+  <circle cx="16" cy="16" r="2" fill="#FFFFFF"/>
+  
+  <!-- Center Line -->
+  <line x1="16" y1="6" x2="16" y2="26" stroke="#FFFFFF" stroke-width="1" stroke-dasharray="2,2"/>
+</svg>
