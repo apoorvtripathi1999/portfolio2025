@@ -110,38 +110,35 @@ const EducationContent = () => (
     
     <EducationCard>
       <DegreeTitle>Master of Science in Computer Science</DegreeTitle>
-      <Institution>University of Technology</Institution>
-      <DateRange>2020 - 2022</DateRange>
+      <Institution>Florida Atlantic University</Institution>
+      <DateRange>2024 - 2026</DateRange>
       <Description>
-        Specialized in Artificial Intelligence and Machine Learning with focus on deep learning applications.
+        Specialized in Artificial Intelligence and Machine Learning with focus on Machine Learning applications.
       </Description>
       <List>
-        <ListItem>GPA: 3.8/4.0</ListItem>
-        <ListItem>Thesis: "Advanced Neural Networks for Image Recognition"</ListItem>
-        <ListItem>Relevant Coursework: Machine Learning, Data Structures, Algorithms</ListItem>
+        <ListItem>GPA: 3.78/4.0</ListItem>
+        <ListItem>Thesis: "Multi-RAG based Named Entity Recognition on clinical data using Large Language Models"</ListItem>
+        <ListItem>Relevant Coursework: Data Structures, Algorithms, Machine Learning, Data Science, Artificial Intellegence, Deep Learning, Generative AI, Database Management</ListItem>
       </List>
     </EducationCard>
     
     <EducationCard>
-      <DegreeTitle>Bachelor of Science in Software Engineering</DegreeTitle>
-      <Institution>State University</Institution>
-      <DateRange>2016 - 2020</DateRange>
+      <DegreeTitle>Bachelor of Technology in Infromation Technology</DegreeTitle>
+      <Institution>SRM University</Institution>
+      <DateRange>2017 - 2021</DateRange>
       <Description>
-        Comprehensive program covering software development, system design, and project management.
+        Comprehensive program covering computer science fundaments, system design and architechure.
       </Description>
       <List>
-        <ListItem>GPA: 3.6/4.0</ListItem>
-        <ListItem>Dean's List: Fall 2018, Spring 2019</ListItem>
-        <ListItem>Senior Project: "E-commerce Platform with React and Node.js"</ListItem>
+        <ListItem>GPA: 2.72/4.0</ListItem>
+        <ListItem>Senior Project: "Farm monitoring system using arduino based IOT"</ListItem>
       </List>
     </EducationCard>
     
     <EducationCard>
       <DegreeTitle>Certifications</DegreeTitle>
       <List>
-        <ListItem>AWS Certified Solutions Architect (2023)</ListItem>
-        <ListItem>Google Cloud Professional Developer (2022)</ListItem>
-        <ListItem>Certified Scrum Master (2021)</ListItem>
+        <ListItem>Codepath Intro to technical interview prep (2025)</ListItem>
       </List>
     </EducationCard>
   </Wrapper>

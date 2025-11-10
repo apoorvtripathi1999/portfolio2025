@@ -110,46 +110,66 @@ const Link = styled.a`
 
 const MusicContent = () => (
   <Wrapper>
-    <SectionTitle>Music & Audio Projects</SectionTitle>
+    <SectionTitle>Coding Playlists & Music</SectionTitle>
     
     <TrackCard>
-      <TrackTitle>Coding Playlist - Focus Sessions</TrackTitle>
-      <TrackMeta>Released: 2023 • 2 hours 30 min</TrackMeta>
+      <TrackTitle>Lofi Girl - Beats to Code/Study To</TrackTitle>
+      <TrackMeta>YouTube • Live Stream • 24/7</TrackMeta>
       <Description>
-        Curated playlist of ambient and electronic music designed to enhance focus and productivity 
-        during coding sessions. Features artists like Boards of Canada, Aphex Twin, and Tycho.
+        The iconic 24/7 lofi hip hop radio stream perfect for coding sessions. Millions of 
+        developers worldwide use this stream to maintain focus during programming.
       </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>Listen on Spotify</Link>
+      <Link href="https://www.youtube.com/watch?v=jfKfPfyJRdk" target="_blank" rel="noopener noreferrer">Listen on YouTube</Link>
     </TrackCard>
     
     <TrackCard>
-      <TrackTitle>Digital Dreams - Original Composition</TrackTitle>
-      <TrackMeta>Released: 2022 • 4 min 32 sec</TrackMeta>
+      <TrackTitle>Peaceful Piano - Spotify</TrackTitle>
+      <TrackMeta>Spotify • 6 hours • Official Playlist</TrackMeta>
       <Description>
-        Original electronic composition created using Ableton Live, featuring synthesized 
-        sounds and ambient textures inspired by the digital world.
+        Peaceful piano pieces for focus and relaxation. Perfect instrumental background music 
+        for coding, featuring modern and classical piano compositions.
       </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>Listen on SoundCloud</Link>
+      <Link href="https://open.spotify.com/playlist/37i9dQZF1DX4sWSpwq3LiO" target="_blank" rel="noopener noreferrer">Listen on Spotify</Link>
     </TrackCard>
     
     <TrackCard>
-      <TrackTitle>Tech Podcast Theme Music</TrackTitle>
-      <TrackMeta>Released: 2022 • 1 min 15 sec</TrackMeta>
+      <TrackTitle>ChilledCow - Lofi Hip Hop Mix</TrackTitle>
+      <TrackMeta>YouTube • 1 hour • Popular Mix</TrackMeta>
       <Description>
-        Upbeat electronic theme music created for a technology podcast, featuring 
-        modern synthesizers and driving rhythms.
+        High-quality lofi hip hop mix perfect for programming sessions. Features smooth beats 
+        and jazzy samples that help maintain concentration without being distracting.
       </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>Listen on YouTube</Link>
+      <Link href="https://www.youtube.com/watch?v=5qap5aO4i9A" target="_blank" rel="noopener noreferrer">Listen on YouTube</Link>
     </TrackCard>
     
     <TrackCard>
-      <TrackTitle>Ambient Coding Sounds</TrackTitle>
-      <TrackMeta>Released: 2021 • 1 hour 45 min</TrackMeta>
+      <TrackTitle>Deep Focus - Spotify Official</TrackTitle>
+      <TrackMeta>Spotify • 3 hours • Updated Weekly</TrackMeta>
       <Description>
-        Collection of ambient soundscapes and white noise designed to create the perfect 
-        coding environment. Includes rain sounds, coffee shop ambiance, and nature sounds.
+        Keep calm and focus with ambient and post-rock music. Designed specifically for 
+        concentration and deep work sessions including programming and coding.
       </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>Listen on Bandcamp</Link>
+      <Link href="https://open.spotify.com/playlist/37i9dQZF1DWZeKCadgRdKQ" target="_blank" rel="noopener noreferrer">Listen on Spotify</Link>
+    </TrackCard>
+    
+    <TrackCard>
+      <TrackTitle>Synthwave Programming - GitHub Playlist</TrackTitle>
+      <TrackMeta>YouTube • 2 hours • Curated by Developers</TrackMeta>
+      <Description>
+        Cyberpunk and synthwave tracks that create the perfect atmosphere for late-night coding 
+        sessions. Popular among developers on GitHub and Stack Overflow communities.
+      </Description>
+      <Link href="https://www.youtube.com/watch?v=MV_3Dpw-BRY" target="_blank" rel="noopener noreferrer">Listen on YouTube</Link>
+    </TrackCard>
+    
+    <TrackCard>
+      <TrackTitle>Brain Food - Spotify Focus</TrackTitle>
+      <TrackMeta>Spotify • 4 hours • Official Playlist</TrackMeta>
+      <Description>
+        Ambient electronic and instrumental music to help you concentrate. Perfect background 
+        music for coding, studying, and other focus-intensive work.
+      </Description>
+      <Link href="https://open.spotify.com/playlist/37i9dQZF1DWXLeA8Omikj7" target="_blank" rel="noopener noreferrer">Listen on Spotify</Link>
     </TrackCard>
   </Wrapper>
 );

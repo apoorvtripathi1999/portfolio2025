@@ -99,47 +99,30 @@ const Link = styled.a`
 
 const ResearchContent = () => (
   <Wrapper>
-    <SectionTitle>Research & Publications</SectionTitle>
+    <SectionTitle>Research</SectionTitle>
     
     <ResearchCard>
-      <ResearchTitle>Neural Networks for Real-Time Image Processing</ResearchTitle>
-      <ResearchMeta>Published: Journal of Computer Science, 2023</ResearchMeta>
+      <ResearchTitle>Multi Agent Reinforcement learning application in constrained supply chains for dynamic pricing.</ResearchTitle>
       <Description>
-        Research on optimizing convolutional neural networks for real-time image processing applications. 
-        Developed novel architecture that reduces inference time by 40% while maintaining accuracy.
+      This research aims to optimize dynamic pricing in applications like flight prices, carpooling prices, product pricing in e-commerce, ticketing in sports/events etc. This research can also be considered as a study of making automated supply chain decisions and can ultimately influence how decisions are going to be made in automated manufacturing supply chains. 
       </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>View Publication</Link>
     </ResearchCard>
     
     <ResearchCard>
       <ResearchTitle>Blockchain Consensus Mechanisms in IoT Networks</ResearchTitle>
-      <ResearchMeta>Published: IEEE Transactions on IoT, 2022</ResearchMeta>
       <Description>
-        Investigated the feasibility of blockchain technology in Internet of Things networks, 
-        proposing a lightweight consensus mechanism suitable for resource-constrained devices.
+        This research aims to improve medical Named Entity Recognition by enhancing an existing system that uses Large Language Models and Retrieval Augmented Generation. The study builds upon a foundational model that utilized Dictionary-Infused RAG for zero-shot entity identification using the UMLS database and KATE for one-shot classification. This new work introduces three key enhancements to make the system more reliable, dynamic, and cost-effective. First, it integrates advanced prompting techniques, such as chain of thought and meta prompting, with the existing TANL formatting to improve the LLM's output quality. Second, it adds caching techniques to the RAG system to store previously retrieved information, which significantly reduces the high computational costs and resource demands. Finally, it overcomes a major limitation of the original model by making the system more dynamic; it first classifies the *type* of entity e.g., gene, drug, chemical, and then queries a *respective* database like NCBI gene for genes, to retrieve more accurate context, moving beyond the original's reliance on only UMLS.
       </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>View Publication</Link>
     </ResearchCard>
-    
-    <ResearchCard>
-      <ResearchTitle>Quantum Computing Applications in Cryptography</ResearchTitle>
-      <ResearchMeta>Published: Quantum Information Processing, 2022</ResearchMeta>
+
+      <ResearchCard>
+      <ResearchTitle>IoT Based Smart Farm Monitoring System</ResearchTitle>
       <Description>
-        Theoretical analysis of quantum algorithms for cryptographic applications, including 
-        post-quantum cryptography and quantum key distribution protocols.
+        The farm monitoring system is a mixture of hardware and software additives. The hardware part includes embedded systems and software program is the Arduino ide.The Arduino ide displays readings from sensors are inserted using the hardware.The special sensors used are temperature and humidity sensor,pir sensor and soil moisture sensor. The facts gathered with the aid of the sensors is sent to the Arduino UNO microcontroller ATmega328.The gathered information may be displayed in a Arduino IDE. A GSM module is hooked up with the Arduino to facilitate messaging service which updates the farmers each 10 seconds approximately the climate conditions of the subject. IV.HARDWARE USED This project is aided with many hardwares. This proposed technology is an amalgamation of different sensors, microcontroller and communication medium to help the farmers to work on their farms.
       </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>View Publication</Link>
+      <Link href="https://www.ijrte.org/wp-content/uploads/papers/v8i4/D8806118419.pdf" onClick={(e) => e.preventDefault()}>View Publication</Link>
     </ResearchCard>
-    
-    <ResearchCard>
-      <ResearchTitle>Machine Learning for Predictive Maintenance</ResearchTitle>
-      <ResearchMeta>Published: Industrial AI Journal, 2021</ResearchMeta>
-      <Description>
-        Developed machine learning models for predicting equipment failures in manufacturing 
-        environments, achieving 95% accuracy in failure prediction.
-      </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>View Publication</Link>
-    </ResearchCard>
+
   </Wrapper>
 );
 

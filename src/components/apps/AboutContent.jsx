@@ -40,24 +40,7 @@ const Description = styled.p`
 const AboutContent = () => (
   <Wrapper>
     <SectionTitle>About Me</SectionTitle>
-    
-    <Description>
-      I'm a passionate full-stack developer with over 5 years of experience building modern web applications. 
-      I specialize in React, Node.js, and cloud technologies, with a strong focus on creating scalable, 
-      user-friendly solutions.
-    </Description>
-    
-    <Description>
-      My journey in software development began during my computer science studies, where I discovered my love 
-      for solving complex problems through code. Since then, I've worked with startups and established 
-      companies, helping them build robust digital solutions.
-    </Description>
-    
-    <Description>
-      When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, 
-      or sharing knowledge through technical writing and mentoring. I believe in continuous learning and 
-      staying up-to-date with the latest industry trends.
-    </Description>
+    <Description>Data Science Intern currently persuing a Master's student in Computer Science at Florida Atlantic University GPA: 3.7/4.0, with a Bachelor's in Information Technology from SRM Institute GPA: 6.8/10. With hands-on experience in machine learning, AI, and data infrastructure, including leading data projects at Kahani and prior roles in operations and program management, where I improved workflows, NPS scores, and team efficiency. My projects include ML microservices for churn prediction using FastAPI/REST APIs, ensemble regression for housing prices, Power BI dashboards for real-time analytics, and Streamlit apps for predictions. Skilled in Python, SQL, sklearn, NLP, LLMs, HuggingFace, Langchain, AWS, Docker, Git, and data visualization, with strong communication and stakeholder management abilities.</Description>
   </Wrapper>
 );
 

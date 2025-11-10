@@ -30,24 +30,7 @@ const JobCard = styled.div`
   box-shadow: 6px 6px 0px ${theme.colors.accents.laserRed};
   padding: 20px;
   margin-bottom: 20px;
-  transition: ${theme.animations.normal};
   position: relative;
-  
-  &:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px ${theme.colors.accents.laserRed};
-  }
-  
-  &:before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    background: linear-gradient(45deg, ${theme.colors.accents.laserRed}, ${theme.colors.accents.hotPink});
-    z-index: -1;
-  }
 `;
 
 const JobTitle = styled.h2`
@@ -119,49 +102,65 @@ const ListItem = styled.li`
 const WorkExperienceContent = () => (
   <Wrapper>
     <SectionTitle>Work Experience</SectionTitle>
-    
+
     <JobCard>
-      <JobTitle>Lead Developer</JobTitle>
-      <Company>Tech Solutions Inc.</Company>
-      <DateRange>2021 - Present</DateRange>
+      <JobTitle>Lead QA/DataScience Intern</JobTitle>
+      <Company>Kahani - Wilmington, DE, Remote</Company>
+      <DateRange>OCT 2025 - Present</DateRange>
       <Description>
-        Responsible for leading the front-end development of the company's flagship SaaS platform, utilizing modern web technologies to deliver a high-performance user experience.
+        QA and Data Science intern, working on setting up the data infrastructure for early stage startup.
       </Description>
       <List>
-        <ListItem>Architected and implemented a new component library in React, reducing development time by 30%</ListItem>
-        <ListItem>Mentored a team of four junior developers, fostering best practices in code quality and testing</ListItem>
-        <ListItem>Optimized application load times by 50% through code splitting and asset optimization</ListItem>
-        <ListItem>Led the migration from legacy jQuery to modern React architecture</ListItem>
+        <ListItem>Design and implement Kahani's data infrastructure for Pilot 2 and beyond working on event tracking, schema
+design, pipelines with Firebase, Pub/Sub, BigQuery, dashboards.
+</ListItem>
+        <ListItem> Define and monitor core product metrics like engagement, retention, symptom improvement to
+evaluate product-market fit.</ListItem>
+      </List>
+    </JobCard>
+
+    <JobCard>
+      <JobTitle>Product Operations Manager</JobTitle>
+      <Company>Allen Digital Private Limited - Bengaluru, India</Company>
+      <DateRange>JAN 2024 - JUN 2024</DateRange>
+      <Description>
+        Worked alongside the product and tech teams to manage and own product development cycles and feature adherence.
+      </Description>
+      <List>
+        <ListItem>Improved the non-tech queries turn around time to an average of 2 days from a week through constant monitoring and maintaining the issue tracking analytics.</ListItem>
+        <ListItem>Managed operations for 1000+ cohorts, ensuring regular metrics adharence and proper documentation.</ListItem>
       </List>
     </JobCard>
     
     <JobCard>
-      <JobTitle>Senior Frontend Developer</JobTitle>
-      <Company>Digital Innovations LLC</Company>
-      <DateRange>2019 - 2021</DateRange>
+      <JobTitle>Program Manager</JobTitle>
+      <Company>Heycoach - Bengaluru, India</Company>
+      <DateRange>APR 2023 - DEC 2023</DateRange>
       <Description>
-        Developed and maintained responsive web applications using React, Vue.js, and modern CSS frameworks.
+        Progam manager worked with teams on special projects for an early stage startup.
       </Description>
       <List>
-        <ListItem>Built responsive e-commerce platform serving 100,000+ daily active users</ListItem>
-        <ListItem>Implemented real-time features using WebSocket connections and Socket.io</ListItem>
-        <ListItem>Collaborated with UX/UI designers to create intuitive user interfaces</ListItem>
-        <ListItem>Reduced bundle size by 40% through code optimization and tree shaking</ListItem>
+        <ListItem>Led engagement initiatives, creating SOPs that enhanced cross-team communication.</ListItem>
+        <ListItem>Set up and managed a B2B team onboarding 65+ high-value clients during the first month.</ListItem>
+        <ListItem>Managed the development of a feature for the platform called DSA Visualizer.
+</ListItem>
       </List>
     </JobCard>
     
     <JobCard>
-      <JobTitle>Frontend Developer</JobTitle>
-      <Company>StartupXYZ</Company>
-      <DateRange>2018 - 2019</DateRange>
+      <JobTitle>Operations Associate</JobTitle>
+      <Company>Newton School - Bengaluru, India</Company>
+      <DateRange>Nov 2021 - Mar 2023</DateRange>
       <Description>
-        Full-stack development role focusing on rapid prototyping and MVP development for early-stage startup.
+        Associate in operations management, worked with multiple teams for improving the operations efficiency for early-stage startup.
       </Description>
       <List>
-        <ListItem>Developed MVP web application using React and Node.js</ListItem>
-        <ListItem>Implemented user authentication and authorization systems</ListItem>
-        <ListItem>Created responsive designs for mobile and desktop platforms</ListItem>
-        <ListItem>Participated in agile development processes and sprint planning</ListItem>
+        <ListItem>Prepared students for job interviews through analytics and other resources, resulting in 600+
+conversions during the year 2020 to 2021.</ListItem>
+        <ListItem>Boosted student experience scores (NPS) by 40% through process improvements and feedback
+analysis.
+</ListItem>
+        <ListItem>Managed a team of support associates improving student outreach to around 90%.</ListItem>
       </List>
     </JobCard>
   </Wrapper>

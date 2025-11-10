@@ -91,72 +91,41 @@ const TechnologiesContent = () => (
     <SectionTitle>Technologies & Skills</SectionTitle>
     
     <CategoryCard borderColor={theme.colors.accents.neonGreen}>
-      <CategoryTitle color={theme.colors.accents.neonGreen}>Frontend Development</CategoryTitle>
-      <Description accentColor={theme.colors.accents.neonGreen} rgbaColor="0, 255, 65">
-        Modern web technologies for building responsive and interactive user interfaces.
-      </Description>
+      <CategoryTitle color={theme.colors.accents.neonGreen}>Programming Languages, Frameworks & DevOps</CategoryTitle>
       <TechList>
-        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">React</TechItem>
-        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">Vue.js</TechItem>
-        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">TypeScript</TechItem>
-        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">JavaScript (ES6+)</TechItem>
-        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">HTML5</TechItem>
-        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">CSS3</TechItem>
-        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">Sass/SCSS</TechItem>
-        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">Styled Components</TechItem>
-        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">Tailwind CSS</TechItem>
+        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">Python</TechItem>
+        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">SQL</TechItem>
+        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">FastAPI</TechItem>
+        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">Pydantic</TechItem>
+        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">Docker</TechItem>
+        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">Git</TechItem>
+        <TechItem borderColor={theme.colors.accents.neonGreen} backgroundColor="rgba(0, 255, 65, 0.1)">Cursor AI</TechItem>
       </TechList>
     </CategoryCard>
     
     <CategoryCard borderColor={theme.colors.accents.electricBlue}>
-      <CategoryTitle color={theme.colors.accents.electricBlue}>Backend Development</CategoryTitle>
-      <Description accentColor={theme.colors.accents.electricBlue} rgbaColor="0, 102, 255">
-        Server-side technologies and database management for scalable applications.
-      </Description>
+      <CategoryTitle color={theme.colors.accents.electricBlue}>Machine Learning & AI Technologies</CategoryTitle>
       <TechList>
-        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">Node.js</TechItem>
-        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">Express.js</TechItem>
-        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">Python</TechItem>
-        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">Django</TechItem>
-        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">PostgreSQL</TechItem>
-        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">MongoDB</TechItem>
-        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">Redis</TechItem>
-        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">GraphQL</TechItem>
-        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">REST APIs</TechItem>
+        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">Scikit learn</TechItem>
+        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">Tensorflow</TechItem>
+        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">Keras</TechItem>
+        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">Huggingface</TechItem>
+        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">Langchain</TechItem>
+        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">Natural Language Processing</TechItem>
+        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">Large Language Models</TechItem>
+        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">Deep Naural Network</TechItem>
+        <TechItem borderColor={theme.colors.accents.electricBlue} backgroundColor="rgba(0, 102, 255, 0.1)">Model Context Protocol</TechItem>
       </TechList>
     </CategoryCard>
     
     <CategoryCard borderColor={theme.colors.accents.toxicPurple}>
-      <CategoryTitle color={theme.colors.accents.toxicPurple}>Cloud & DevOps</CategoryTitle>
-      <Description accentColor={theme.colors.accents.toxicPurple} rgbaColor="128, 0, 255">
-        Cloud platforms and deployment technologies for modern application hosting.
-      </Description>
+      <CategoryTitle color={theme.colors.accents.toxicPurple}>Data Analytics & Visualization</CategoryTitle>
       <TechList>
-        <TechItem borderColor={theme.colors.accents.toxicPurple} backgroundColor="rgba(128, 0, 255, 0.1)">AWS</TechItem>
-        <TechItem borderColor={theme.colors.accents.toxicPurple} backgroundColor="rgba(128, 0, 255, 0.1)">Google Cloud</TechItem>
-        <TechItem borderColor={theme.colors.accents.toxicPurple} backgroundColor="rgba(128, 0, 255, 0.1)">Docker</TechItem>
-        <TechItem borderColor={theme.colors.accents.toxicPurple} backgroundColor="rgba(128, 0, 255, 0.1)">Kubernetes</TechItem>
-        <TechItem borderColor={theme.colors.accents.toxicPurple} backgroundColor="rgba(128, 0, 255, 0.1)">CI/CD</TechItem>
-        <TechItem borderColor={theme.colors.accents.toxicPurple} backgroundColor="rgba(128, 0, 255, 0.1)">Git</TechItem>
-        <TechItem borderColor={theme.colors.accents.toxicPurple} backgroundColor="rgba(128, 0, 255, 0.1)">GitHub Actions</TechItem>
-        <TechItem borderColor={theme.colors.accents.toxicPurple} backgroundColor="rgba(128, 0, 255, 0.1)">Jenkins</TechItem>
-      </TechList>
-    </CategoryCard>
-    
-    <CategoryCard borderColor={theme.colors.accents.acidOrange}>
-      <CategoryTitle color={theme.colors.accents.acidOrange}>Tools & Frameworks</CategoryTitle>
-      <Description accentColor={theme.colors.accents.acidOrange} rgbaColor="255, 102, 0">
-        Development tools and frameworks that enhance productivity and code quality.
-      </Description>
-      <TechList>
-        <TechItem borderColor={theme.colors.accents.acidOrange} backgroundColor="rgba(255, 102, 0, 0.1)">Webpack</TechItem>
-        <TechItem borderColor={theme.colors.accents.acidOrange} backgroundColor="rgba(255, 102, 0, 0.1)">Vite</TechItem>
-        <TechItem borderColor={theme.colors.accents.acidOrange} backgroundColor="rgba(255, 102, 0, 0.1)">Jest</TechItem>
-        <TechItem borderColor={theme.colors.accents.acidOrange} backgroundColor="rgba(255, 102, 0, 0.1)">Cypress</TechItem>
-        <TechItem borderColor={theme.colors.accents.acidOrange} backgroundColor="rgba(255, 102, 0, 0.1)">ESLint</TechItem>
-        <TechItem borderColor={theme.colors.accents.acidOrange} backgroundColor="rgba(255, 102, 0, 0.1)">Prettier</TechItem>
-        <TechItem borderColor={theme.colors.accents.acidOrange} backgroundColor="rgba(255, 102, 0, 0.1)">Figma</TechItem>
-        <TechItem borderColor={theme.colors.accents.acidOrange} backgroundColor="rgba(255, 102, 0, 0.1)">VS Code</TechItem>
+        <TechItem borderColor={theme.colors.accents.toxicPurple} backgroundColor="rgba(128, 0, 255, 0.1)">Power BI</TechItem>
+        <TechItem borderColor={theme.colors.accents.toxicPurple} backgroundColor="rgba(128, 0, 255, 0.1)">MS Excel</TechItem>
+        <TechItem borderColor={theme.colors.accents.toxicPurple} backgroundColor="rgba(128, 0, 255, 0.1)">Pandas and Numpy</TechItem>
+        <TechItem borderColor={theme.colors.accents.toxicPurple} backgroundColor="rgba(128, 0, 255, 0.1)">Mathplotlib</TechItem>
+        <TechItem borderColor={theme.colors.accents.toxicPurple} backgroundColor="rgba(128, 0, 255, 0.1)">Google Big Query</TechItem>
       </TechList>
     </CategoryCard>
   </Wrapper>

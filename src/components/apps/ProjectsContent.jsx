@@ -116,74 +116,112 @@ const Link = styled.a`
 const ProjectsContent = () => (
   <Wrapper>
     <SectionTitle>Featured Projects</SectionTitle>
-    
-    <ProjectCard>
-      <ProjectTitle>E-Commerce Platform</ProjectTitle>
-      <ProjectMeta>2023 • Full-Stack Web Application</ProjectMeta>
+
+      <ProjectCard>
+      <ProjectTitle>Multi agent reinforcement learning for dynamic pricing.</ProjectTitle>
+      <ProjectMeta>2025 • Multi Agent Reinforcement Learning</ProjectMeta>
       <Description>
-        A comprehensive e-commerce platform built with React and Node.js, featuring real-time inventory management, 
-        payment processing, and admin dashboard. Supports 10,000+ concurrent users with 99.9% uptime.
+        Optimizing dynamic pricing in applications like flight prices, carpooling prices, product pricing in e-commerce, ticketing in sports/events etc.
       </Description>
-      <TechStack>Tech Stack: React, Node.js, PostgreSQL, Redis, Docker, AWS</TechStack>
+      <TechStack>Tech Stack: Multi Agent AI, Python, Reinforcement Learning, LLM, Huggingface</TechStack>
       <LinksContainer>
-        <Link href="#" onClick={(e) => e.preventDefault()}>View Live Demo</Link>
-        <Link href="#" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+        <Link href="https://github.com/apoorvtripathi1999/Multi-agent-RL-for-dynamic-pricing." onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+      </LinksContainer>
+    </ProjectCard>
+
+      <ProjectCard>
+      <ProjectTitle>Multi RAG based Named Entity Recognition on clinical data using LLM</ProjectTitle>
+      <ProjectMeta>2025 • Natural Language Processing on medical data</ProjectMeta>
+      <Description>
+        Utilizing a multi RAG based framework for indetification of entities from clinical data. This multi RAG based application uses LLM for classification and chain of thought as prompting technique.
+      </Description>
+      <TechStack>Tech Stack: NLP, Python, RAH, LLM, Huggingface</TechStack>
+      <LinksContainer>
+        <Link href="https://github.com/apoorvtripathi1999/named-entity-recognition" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+      </LinksContainer>
+    </ProjectCard>
+
+        <ProjectCard>
+      <ProjectTitle>AI agent for classification and scheduling customer support queries as tasks</ProjectTitle>
+      <ProjectMeta>2025 • AI chat application</ProjectMeta>
+      <Description>
+        This application used a deep neural network for identification of the symantics of the support query and then uses langchain based AI agent for scheduling tasks for solving the support queries.
+      </Description>
+      <TechStack>Tech Stack: Keras, Python, FastAPI, Langchain, LLM</TechStack>
+      <LinksContainer>
+        <Link href="https://github.com/apoorvtripathi1999/custsupport" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+      </LinksContainer>
+    </ProjectCard>
+
+        <ProjectCard>
+      <ProjectTitle>Deep Neural Network for identification of construction defects</ProjectTitle>
+      <ProjectMeta>2025 • Deep Learning Application</ProjectMeta>
+      <Description>
+        A deep neural network which can be employed as a service through an API. The model detects defects during coonstruction.
+      </Description>
+      <TechStack>Tech Stack: Tensorflow, Keras, FastAPI, Python</TechStack>
+      <LinksContainer>
+        <Link href="https://github.com/apoorvtripathi1999/construction-defects" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
       </LinksContainer>
     </ProjectCard>
     
     <ProjectCard>
-      <ProjectTitle>AI-Powered Task Manager</ProjectTitle>
-      <ProjectMeta>2023 • Machine Learning Application</ProjectMeta>
+      <ProjectTitle>Housing Price Prediction using Ensemble Regression and Hyperparameter Optimization
+</ProjectTitle>
+      <ProjectMeta>2025 • Machine Learning</ProjectMeta>
       <Description>
-        Intelligent task management system that uses natural language processing to automatically categorize 
-        and prioritize tasks. Features include smart scheduling, deadline prediction, and productivity analytics.
+        Built an end-to-end machine learning pipeline for housing price prediction, incorporating data cleaning,
+outlier handling, scaling, feature selection, ensemble modeling, cross-validation, and hyperparameter
+tuning—boosting model R² score from 0.67 to 0.90.
       </Description>
-      <TechStack>Tech Stack: Python, TensorFlow, React, FastAPI, MongoDB</TechStack>
+      <TechStack>Tech Stack: Python, Scikit-Learn, Machine Learning</TechStack>
       <LinksContainer>
-        <Link href="#" onClick={(e) => e.preventDefault()}>View Live Demo</Link>
-        <Link href="#" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+        <Link href="https://predictprice-9qtr.onrender.com/" onClick={(e) => e.preventDefault()}>View Live Demo</Link>
+        <Link href="https://github.com/apoorvtripathi1999/housingprice" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
       </LinksContainer>
     </ProjectCard>
     
     <ProjectCard>
-      <ProjectTitle>Real-Time Collaboration Tool</ProjectTitle>
-      <ProjectMeta>2022 • Web Application</ProjectMeta>
+      <ProjectTitle>Machine Learning Microservice for Customer Churn Probability Estimation</ProjectTitle>
+      <ProjectMeta>2025 • Machine Learning Microservice</ProjectMeta>
       <Description>
-        Collaborative workspace application similar to Figma, allowing multiple users to work on documents 
-        simultaneously. Features include real-time cursors, change tracking, and conflict resolution.
+        Developed a machine learning microservice to predict customer churn probabilities, exposing model
+outputs via REST APIs for seamless integration with client applications and proactive retention
+strategies.
       </Description>
-      <TechStack>Tech Stack: Vue.js, Socket.io, Express.js, PostgreSQL, WebRTC</TechStack>
+      <TechStack>Tech Stack: Python, Machine Learning, Pydantic, FastAPI</TechStack>
       <LinksContainer>
-        <Link href="#" onClick={(e) => e.preventDefault()}>View Live Demo</Link>
-        <Link href="#" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+        <Link href="https://github.com/apoorvtripathi1999/customerchurnpreddiction" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
       </LinksContainer>
     </ProjectCard>
     
     <ProjectCard>
-      <ProjectTitle>Mobile Weather App</ProjectTitle>
-      <ProjectMeta>2022 • React Native Application</ProjectMeta>
+      <ProjectTitle>Real-Time Analytics Dashboard in Power BI for Sales, Inventory, and
+Marketing
+</ProjectTitle>
+      <ProjectMeta>2024 • Data Visualization</ProjectMeta>
       <Description>
-        Cross-platform mobile weather application with location-based forecasts, severe weather alerts, 
-        and interactive maps. Features offline mode and push notifications for weather updates.
+       Developed an interactive Power BI dashboard to monitor sales, inventory, and marketing metrics in real
+time, enabling data-driven decision-making and improved business visibility.
       </Description>
-      <TechStack>Tech Stack: React Native, Redux, Weather API, Firebase, Expo</TechStack>
+      <TechStack>Tech Stack: MySQL Sever, PowerBI</TechStack>
       <LinksContainer>
-        <Link href="#" onClick={(e) => e.preventDefault()}>App Store</Link>
-        <Link href="#" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+        <Link href="https://github.com/apoorvtripathi1999/bi_reports/blob/main/doordash.pdf" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
       </LinksContainer>
     </ProjectCard>
     
     <ProjectCard>
-      <ProjectTitle>Blockchain Voting System</ProjectTitle>
-      <ProjectMeta>2021 • Blockchain Application</ProjectMeta>
+      <ProjectTitle>Streamlit Web Application for Iris Species Prediction
+</ProjectTitle>
+      <ProjectMeta>2024 • Machine Learning Application</ProjectMeta>
       <Description>
-        Secure and transparent voting system built on Ethereum blockchain. Ensures voter anonymity while 
-        maintaining a public, auditable record of all votes cast.
+        Built an interactive web application using Streamlit that leverages a machine learning model to classify
+iris species, providing a user-friendly interface for real-time predictions.
       </Description>
-      <TechStack>Tech Stack: Solidity, Web3.js, React, Node.js, IPFS</TechStack>
+      <TechStack>Tech Stack: Python, Machine Learning Techniques, Streamlit</TechStack>
       <LinksContainer>
-        <Link href="#" onClick={(e) => e.preventDefault()}>View Live Demo</Link>
-        <Link href="#" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+        <Link href="https://iris-classification-v4hjbnlnwm2noqhedlxbjr.streamlit.app/" onClick={(e) => e.preventDefault()}>App Store</Link>
+        <Link href="https://github.com/apoorvtripathi1999/iris-classification" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
       </LinksContainer>
     </ProjectCard>
   </Wrapper>

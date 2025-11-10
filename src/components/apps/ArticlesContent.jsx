@@ -99,46 +99,49 @@ const Link = styled.a`
 
 const ArticlesContent = () => (
   <Wrapper>
-    <SectionTitle>Technical Articles</SectionTitle>
+    <SectionTitle>Articles</SectionTitle>
     
     <ArticleCard>
-      <ArticleTitle>Building Scalable React Applications</ArticleTitle>
-      <ArticleMeta>Published: March 2023 • 8 min read</ArticleMeta>
+      <ArticleTitle>Does non repetitive code really translates to better performance?</ArticleTitle>
+      <ArticleMeta>Published: July 2025 • 10 min read</ArticleMeta>
+      <Description>We do not have to blindly follow the principles of clean code, as they are suggestions and best practices and does not define the overall context of code. But we should also not ignore the requirement and need for maintainability. We should design better code structure which can work with both performance and maintainability.</Description>
+      <Link href="https://dev.to/apoorvtripathi1999/from-research-to-production-how-i-built-a-customer-churn-prediction-api-that-actually-works-5gdg" onClick={(e) => e.preventDefault()}>Read Article</Link>
+    </ArticleCard>
+
+    <ArticleCard>
+      <ArticleTitle>From Research to Production: How I Built a Customer Churn Prediction API That Actually Works</ArticleTitle>
+      <ArticleMeta>Published: July 2025 • 5 min read</ArticleMeta>
       <Description>
-        A comprehensive guide to architecting React applications that can handle millions of users. 
-        Covers code splitting, lazy loading, and performance optimization techniques.
+        Ever wondered how to bridge the gap between your ML experiments and real-world applications? I used to spend days, perfecting machine learning models, only to face the harsh reality that production deployment is a completely different beast.
       </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>Read Article</Link>
+      <Link href="https://dev.to/apoorvtripathi1999/from-research-to-production-how-i-built-a-customer-churn-prediction-api-that-actually-works-5gdg" onClick={(e) => e.preventDefault()}>Read Article</Link>
     </ArticleCard>
     
     <ArticleCard>
-      <ArticleTitle>The Future of Web Development</ArticleTitle>
-      <ArticleMeta>Published: February 2023 • 6 min read</ArticleMeta>
+      <ArticleTitle>Custom Transformers Are the Secret to Making ML Pipelines Work in Practice</ArticleTitle>
+      <ArticleMeta>Published: July 2025 • 10 min read</ArticleMeta>
       <Description>
-        Exploring emerging technologies and trends in web development, including WebAssembly, 
-        Progressive Web Apps, and the evolution of JavaScript frameworks.
+        Custom transformers aren't just about code organization—they're about embedding domain knowledge into your ML workflow.
       </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>Read Article</Link>
+      <Link href="https://dev.to/apoorvtripathi1999/custom-transformers-are-the-secret-to-making-ml-pipelines-work-in-practice-i14" onClick={(e) => e.preventDefault()}>Read Article</Link>
     </ArticleCard>
     
     <ArticleCard>
-      <ArticleTitle>Mastering TypeScript for Large Codebases</ArticleTitle>
-      <ArticleMeta>Published: January 2023 • 10 min read</ArticleMeta>
+      <ArticleTitle>The Class Imbalance Problem: How I Achieved 89% Accuracy on Customer Churn Prediction</ArticleTitle>
+      <ArticleMeta>Published: July 2025 • 6 min read</ArticleMeta>
       <Description>
-        Best practices for using TypeScript in enterprise applications, including advanced type 
-        patterns, module organization, and team collaboration strategies.
+        Class imbalance doesn't have to be a death sentence for your ML models. Sometimes the best solution is the simplest: carefully balance your data and let the algorithms do what they do best. In my case, this approach led to an 89% accuracy rate that would have been impossible with the original imbalanced dataset.
       </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>Read Article</Link>
+      <Link href="https://dev.to/apoorvtripathi1999/the-class-imbalance-problem-how-i-achieved-89-accuracy-on-customer-churn-prediction-4chg" onClick={(e) => e.preventDefault()}>Read Article</Link>
     </ArticleCard>
     
     <ArticleCard>
-      <ArticleTitle>Cloud-Native Architecture Patterns</ArticleTitle>
-      <ArticleMeta>Published: December 2022 • 12 min read</ArticleMeta>
+      <ArticleTitle>API Design That Doesn't Break: How Pydantic Saved My API</ArticleTitle>
+      <ArticleMeta>Published: July 2025 • 5 min read</ArticleMeta>
       <Description>
-        Designing applications for the cloud era, covering microservices, containerization, 
-        and serverless architectures with real-world examples.
+        Good API design isn’t about flashy features—it’s about handling edge cases gracefully and making failure modes predictable.
       </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>Read Article</Link>
+      <Link href="https://dev.to/apoorvtripathi1999/api-design-that-doesnt-break-how-pydantic-saved-my-api-dkp" onClick={(e) => e.preventDefault()}>Read Article</Link>
     </ArticleCard>
   </Wrapper>
 );
