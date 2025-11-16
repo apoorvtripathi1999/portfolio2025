@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import theme from '../../styles/theme';
+import resumePDF from '../../assets/resume/Apoorv Tripathi Resume dec 2025.pdf';
 
 const slideDown = keyframes`
   from { 
@@ -96,13 +97,12 @@ const PreviewTitle = styled.h2`
 
 const ResumePreview = styled.div`
   background: ${theme.colors.global.background};
-  border: 2px solid ${theme.colors.text.primary};
+  border: 4px solid ${theme.colors.accents.electricBlue};
   border-radius: 4px;
-  padding: 20px;
-  font-family: 'Times New Roman', serif;
-  color: ${theme.colors.text.primary};
-  min-height: 200px;
-  box-shadow: 4px 4px 0px ${theme.colors.global.shadow};
+  padding: 0;
+  min-height: 600px;
+  height: 70vh;
+  box-shadow: 6px 6px 0px ${theme.colors.accents.electricBlue};
   position: relative;
   overflow: hidden;
   
@@ -117,27 +117,15 @@ const ResumePreview = styled.div`
       ${theme.colors.accents.neonGreen}, 
       ${theme.colors.accents.electricBlue}, 
       ${theme.colors.accents.hotPink});
+    z-index: 1;
   }
 `;
 
-const PreviewText = styled.div`
-  line-height: 1.6;
-  
-  h3 {
-    color: ${theme.colors.accents.hotPink};
-    font-size: 18px;
-    margin: 15px 0 10px 0;
-    font-weight: bold;
-  }
-  
-  p {
-    margin-bottom: 10px;
-  }
-  
-  ul {
-    margin-left: 20px;
-    margin-bottom: 15px;
-  }
+const PDFEmbed = styled.embed`
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: white;
 `;
 
 const DownloadSection = styled.div`
@@ -278,15 +266,8 @@ const ResumeContent = () => {
       
       // Create and trigger download
       const link = document.createElement('a');
-      if (format === 'pdf') {
-        link.href = '/John_Doe_Resume.pdf';
-        link.download = 'John_Doe_Resume.pdf';
-      } else {
-        // For demo purposes, we'll use the PDF for both formats
-        // In production, you would have separate files
-        link.href = '/John_Doe_Resume.pdf';
-        link.download = 'John_Doe_Resume.docx';
-      }
+      link.href = resumePDF;
+      link.download = 'Apoorv_Tripathi_Resume.pdf';
       link.click();
       
       // Reset status after 3 seconds
@@ -303,82 +284,42 @@ const ResumeContent = () => {
     <ResumeContainer>
       <Header>
         <Title>My Resume</Title>
-        <Subtitle>Professional Experience & Qualifications</Subtitle>
+        <Subtitle>Download my latest resume in PDF format</Subtitle>
       </Header>
       
       <PreviewSection>
         <PreviewTitle>Resume Preview</PreviewTitle>
         <ResumePreview>
-          <PreviewText>
-            <h3>John Doe</h3>
-            <p><strong>Software Engineer | Full Stack Developer</strong></p>
-            <p>📧 john.doe@email.com | 📱 (555) 123-4567 | 🌐 linkedin.com/in/johndoe</p>
-            
-            <h3>Professional Summary</h3>
-            <p>Experienced software engineer with 5+ years developing scalable web applications using React, Node.js, and cloud technologies. Passionate about creating efficient, user-focused solutions.</p>
-            
-            <h3>Technical Skills</h3>
-            <ul>
-              <li><strong>Frontend:</strong> React, JavaScript, TypeScript, HTML5, CSS3</li>
-              <li><strong>Backend:</strong> Node.js, Python, Express.js, REST APIs</li>
-              <li><strong>Database:</strong> MongoDB, PostgreSQL, Redis</li>
-              <li><strong>Cloud:</strong> AWS, Docker, Kubernetes</li>
-            </ul>
-            
-            <h3>Work Experience</h3>
-            <p><strong>Senior Software Engineer</strong> - Tech Corp (2021-Present)</p>
-            <ul>
-              <li>Led development of React-based dashboard serving 10K+ users</li>
-              <li>Optimized application performance, reducing load times by 40%</li>
-            </ul>
-          </PreviewText>
+          <PDFEmbed 
+            src={resumePDF}
+            type="application/pdf"
+            title="Apoorv Tripathi Resume"
+          />
         </ResumePreview>
       </PreviewSection>
       
       <DownloadSection>
-        <PreviewTitle>Download Options</PreviewTitle>
+        <PreviewTitle>Download Resume</PreviewTitle>
         <DownloadGrid>
           <DownloadCard>
             <DownloadIcon>📄</DownloadIcon>
             <DownloadTitle>PDF Format</DownloadTitle>
             <DownloadDescription>
-              Professional format, perfect for applications and printing. 
-              Maintains formatting across all devices.
+              Download my complete resume in PDF format. 
+              Perfect for applications and maintains formatting across all devices.
             </DownloadDescription>
             <DownloadButton 
               downloading={downloadStates.pdf.downloading}
               onClick={() => handleDownload('pdf')}
               disabled={downloadStates.pdf.downloading}
             >
-              {downloadStates.pdf.downloading ? 'Preparing...' : 'Download PDF'}
+              {downloadStates.pdf.downloading ? 'Preparing...' : 'Download Resume'}
             </DownloadButton>
             <ProgressBar show={downloadStates.pdf.progress}>
               <ProgressFill />
             </ProgressBar>
             <StatusMessage show={downloadStates.pdf.complete}>
-              ✓ PDF Downloaded Successfully!
-            </StatusMessage>
-          </DownloadCard>
-          
-          <DownloadCard>
-            <DownloadIcon>📝</DownloadIcon>
-            <DownloadTitle>Word Format</DownloadTitle>
-            <DownloadDescription>
-              Editable format for customization and ATS optimization. 
-              Compatible with Microsoft Word and similar applications.
-            </DownloadDescription>
-            <DownloadButton 
-              downloading={downloadStates.word.downloading}
-              onClick={() => handleDownload('word')}
-              disabled={downloadStates.word.downloading}
-            >
-              {downloadStates.word.downloading ? 'Preparing...' : 'Download DOCX'}
-            </DownloadButton>
-            <ProgressBar show={downloadStates.word.progress}>
-              <ProgressFill />
-            </ProgressBar>
-            <StatusMessage show={downloadStates.word.complete}>
-              ✓ Word Document Downloaded Successfully!
+              ✓ Resume Downloaded Successfully!
             </StatusMessage>
           </DownloadCard>
         </DownloadGrid>

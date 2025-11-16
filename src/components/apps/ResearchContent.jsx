@@ -109,7 +109,7 @@ const ResearchContent = () => (
     </ResearchCard>
     
     <ResearchCard>
-      <ResearchTitle>Blockchain Consensus Mechanisms in IoT Networks</ResearchTitle>
+      <ResearchTitle>Multi-RAG based Named entity recognition for clinical data</ResearchTitle>
       <Description>
         This research aims to improve medical Named Entity Recognition by enhancing an existing system that uses Large Language Models and Retrieval Augmented Generation. The study builds upon a foundational model that utilized Dictionary-Infused RAG for zero-shot entity identification using the UMLS database and KATE for one-shot classification. This new work introduces three key enhancements to make the system more reliable, dynamic, and cost-effective. First, it integrates advanced prompting techniques, such as chain of thought and meta prompting, with the existing TANL formatting to improve the LLM's output quality. Second, it adds caching techniques to the RAG system to store previously retrieved information, which significantly reduces the high computational costs and resource demands. Finally, it overcomes a major limitation of the original model by making the system more dynamic; it first classifies the *type* of entity e.g., gene, drug, chemical, and then queries a *respective* database like NCBI gene for genes, to retrieve more accurate context, moving beyond the original's reliance on only UMLS.
       </Description>
