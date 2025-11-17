@@ -37,14 +37,28 @@ const GlobalStyle = createGlobalStyle`
     overflow: hidden;
   }
 
-  /* Neo-Brutalist Cursor - Hide default cursor for crosshair system */
-  body {
-    cursor: none;
+  /* Neo-Brutalist Cursor - Hide default cursor for crosshair system on desktop only */
+  @media (min-width: 769px) {
+    body {
+      cursor: none;
+    }
   }
   
   /* Show pointer cursor for interactive elements */
   button, a, [role="button"], input, textarea, select {
     cursor: pointer !important;
+  }
+  
+  /* Enable touch scrolling on mobile */
+  @media (max-width: 768px) {
+    html, body {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    #root {
+      overflow-y: auto;
+    }
   }
 
   /* Neo-Brutalist Scrollbar Styling */

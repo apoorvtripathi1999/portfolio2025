@@ -7,11 +7,23 @@ import CrosshairCursor from './components/system/CrosshairCursor';
 import LogOffScreen from './components/system/LogOffScreen';
 import PowerOffScreen from './components/system/PowerOffScreen';
 import ShutdownAnimations from './components/system/ShutdownAnimations';
+import MobileHome from './components/mobile/MobileHome';
 import useWindowsStore from './store/windowsStore';
 
 function App() {
   const [isBootComplete, setIsBootComplete] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const { setBootComplete, systemState, isBootComplete: storeBootComplete } = useWindowsStore();
+
+  // Detect screen size changes
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleBootComplete = () => {
     setIsBootComplete(true);
@@ -55,6 +67,17 @@ function App() {
     );
   }
 
+  // Show mobile interface on small screens
+  if (isMobile) {
+    return (
+      <>
+        <GlobalStyle />
+        <MobileHome />
+      </>
+    );
+  }
+
+  // Show desktop interface
   return (
     <>
       <GlobalStyle />
