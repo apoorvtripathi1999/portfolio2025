@@ -67,14 +67,20 @@ const UserAvatar = styled.div`
   width: 40px;
   height: 40px;
   background: #CCCCCC;
-  border: 2px solid #FFFFFF;
+  border: 3px solid ${theme.colors.accents.neonGreen};
+  box-shadow: 2px 2px 0px ${theme.colors.global.background};
   border-radius: 2px;
   margin-right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  color: #666666;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 const UserName = styled.div`
@@ -150,33 +156,44 @@ const SystemItem = styled.div`
 `;
 
 const SystemControls = styled.div`
-  border-top: 1px solid #C0C0C0;
-  padding: 4px 0;
+  border-top: 4px solid ${theme.colors.accents.hotPink};
+  padding: 8px;
+  background: ${theme.colors.global.surfaceElevated};
 `;
 
 const ControlButton = styled.button`
   width: 100%;
-  height: 24px;
-  background: #F0F0F0;
-  border: 1px solid #C0C0C0;
-  border-bottom: 1px solid #808080;
-  border-right: 1px solid #808080;
+  height: 40px;
+  background: ${theme.colors.accents.laserRed};
+  border: 3px solid ${theme.colors.accents.laserRed};
+  box-shadow: 4px 4px 0px ${theme.colors.accents.laserRed};
   cursor: pointer;
-  font-family: ${theme.typography.fonts.tahoma};
+  font-family: ${theme.typography.fonts.display};
   font-size: ${theme.typography.sizes.menuItem};
-  color: #000000;
-  text-align: left;
-  padding: 0 8px;
+  font-weight: ${theme.typography.weights.black};
+  color: ${theme.colors.text.primary};
+  text-align: center;
+  padding: 0 12px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all ${theme.animations.fast};
+  text-shadow: 2px 2px 0px ${theme.colors.global.background};
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
   
   &:hover {
-    background: #E0E0E0;
+    background: ${theme.colors.accents.hotPink};
+    border-color: ${theme.colors.accents.hotPink};
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px ${theme.colors.accents.hotPink};
   }
   
   &:active {
-    background: #D0D0D0;
-    border: 1px solid #808080;
-    border-bottom: 1px solid #C0C0C0;
-    border-right: 1px solid #C0C0C0;
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0px ${theme.colors.accents.hotPink};
   }
 `;
 
@@ -198,12 +215,10 @@ const StartMenu = () => {
   ];
 
   const systemItems = [
-    { title: 'My LinkedIn', action: () => window.open('https://linkedin.com', '_blank') },
-    { title: 'My Instagram', action: () => window.open('https://instagram.com', '_blank') },
-    { title: 'My HackerRank', action: () => window.open('https://hackerrank.com', '_blank') },
-    { title: 'My LeetCode', action: () => window.open('https://leetcode.com', '_blank') },
-    { title: 'My GitHub', action: () => window.open('https://github.com', '_blank') },
-    { title: 'My Discord', action: () => window.open('https://discord.com', '_blank') }
+    { title: 'My LinkedIn', action: () => window.open('https://www.linkedin.com/in/apoorv-tripathi-19b132178/', '_blank') },
+    { title: 'My Google Scholar', action: () => window.open('https://scholar.google.com/citations?hl=en&user=OCvS3SQAAAAJ', '_blank') },
+    { title: 'My GitHub', action: () => window.open('https://github.com/apoorvtripathi1999', '_blank') },
+    { title: 'My Instagram', action: () => window.open('https://www.instagram.com/_the___wanderer/', '_blank') }
   ];
 
   const handleItemClick = (appId) => {
@@ -215,8 +230,10 @@ const StartMenu = () => {
     <StartMenuContainer>
       <LeftColumn>
         <UserHeader>
-          <UserAvatar>👤</UserAvatar>
-          <UserName>Portfolio User</UserName>
+          <UserAvatar>
+            <img src="/src/assets/images/profile-pic.jpg" alt="Profile" />
+          </UserAvatar>
+          <UserName>Apoorv Tripathi</UserName>
         </UserHeader>
         
         <PinnedList>

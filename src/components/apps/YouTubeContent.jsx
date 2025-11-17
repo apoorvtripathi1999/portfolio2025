@@ -112,7 +112,7 @@ const YouTubeContent = () => (
   <Wrapper>
     <SectionTitle>YouTube Channel</SectionTitle>
     
-    <VideoCard>
+    {/* <VideoCard>
       <VideoTitle>Building a Full-Stack React Application</VideoTitle>
       <VideoMeta>Published: March 2023 • 45 min • 1.2K views</VideoMeta>
       <Description>
@@ -120,36 +120,10 @@ const YouTubeContent = () => (
         including authentication, database integration, and deployment.
       </Description>
       <Link href="#" onClick={(e) => e.preventDefault()}>Watch Video</Link>
-    </VideoCard>
+    </VideoCard> */}
     
     <VideoCard>
-      <VideoTitle>Advanced JavaScript Concepts Explained</VideoTitle>
-      <VideoMeta>Published: February 2023 • 32 min • 856 views</VideoMeta>
-      <Description>
-        Deep dive into advanced JavaScript concepts including closures, prototypes, 
-        async/await, and modern ES6+ features with practical examples.
-      </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>Watch Video</Link>
-    </VideoCard>
-    
-    <VideoCard>
-      <VideoTitle>CSS Grid vs Flexbox: When to Use What</VideoTitle>
-      <VideoMeta>Published: January 2023 • 28 min • 1.5K views</VideoMeta>
-      <Description>
-        Comprehensive comparison of CSS Grid and Flexbox, with real-world examples 
-        showing when to use each layout method for optimal results.
-      </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>Watch Video</Link>
-    </VideoCard>
-    
-    <VideoCard>
-      <VideoTitle>Introduction to Machine Learning with Python</VideoTitle>
-      <VideoMeta>Published: December 2022 • 1 hour 15 min • 2.1K views</VideoMeta>
-      <Description>
-        Beginner-friendly introduction to machine learning concepts using Python, 
-        covering data preprocessing, model training, and evaluation techniques.
-      </Description>
-      <Link href="#" onClick={(e) => e.preventDefault()}>Watch Video</Link>
+      <VideoTitle>Coming Soon..........</VideoTitle>
     </VideoCard>
   </Wrapper>
 );

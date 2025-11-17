@@ -125,7 +125,7 @@ const ProjectsContent = () => (
       </Description>
       <TechStack>Tech Stack: Multi Agent AI, Python, Reinforcement Learning, LLM, Huggingface</TechStack>
       <LinksContainer>
-        <Link href="https://github.com/apoorvtripathi1999/Multi-agent-RL-for-dynamic-pricing." onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+        <Link href="https://github.com/apoorvtripathi1999/Multi-agent-RL-for-dynamic-pricing." target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
       </LinksContainer>
     </ProjectCard>
 
@@ -137,7 +137,7 @@ const ProjectsContent = () => (
       </Description>
       <TechStack>Tech Stack: NLP, Python, RAH, LLM, Huggingface</TechStack>
       <LinksContainer>
-        <Link href="https://github.com/apoorvtripathi1999/named-entity-recognition" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+        <Link href="https://github.com/apoorvtripathi1999/named-entity-recognition" target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
       </LinksContainer>
     </ProjectCard>
 
@@ -149,7 +149,7 @@ const ProjectsContent = () => (
       </Description>
       <TechStack>Tech Stack: Keras, Python, FastAPI, Langchain, LLM</TechStack>
       <LinksContainer>
-        <Link href="https://github.com/apoorvtripathi1999/custsupport" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+        <Link href="https://github.com/apoorvtripathi1999/custsupport" target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
       </LinksContainer>
     </ProjectCard>
 
@@ -161,7 +161,7 @@ const ProjectsContent = () => (
       </Description>
       <TechStack>Tech Stack: Tensorflow, Keras, FastAPI, Python</TechStack>
       <LinksContainer>
-        <Link href="https://github.com/apoorvtripathi1999/construction-defects" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+        <Link href="https://github.com/apoorvtripathi1999/construction-defects" target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
       </LinksContainer>
     </ProjectCard>
     
@@ -176,8 +176,8 @@ tuning—boosting model R² score from 0.67 to 0.90.
       </Description>
       <TechStack>Tech Stack: Python, Scikit-Learn, Machine Learning</TechStack>
       <LinksContainer>
-        <Link href="https://predictprice-9qtr.onrender.com/" onClick={(e) => e.preventDefault()}>View Live Demo</Link>
-        <Link href="https://github.com/apoorvtripathi1999/housingprice" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+        <Link href="https://predictprice-9qtr.onrender.com/" target="_blank" rel="noopener noreferrer">View Live Demo</Link>
+        <Link href="https://github.com/apoorvtripathi1999/housingprice" target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
       </LinksContainer>
     </ProjectCard>
     
@@ -191,7 +191,7 @@ strategies.
       </Description>
       <TechStack>Tech Stack: Python, Machine Learning, Pydantic, FastAPI</TechStack>
       <LinksContainer>
-        <Link href="https://github.com/apoorvtripathi1999/customerchurnpreddiction" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+        <Link href="https://github.com/apoorvtripathi1999/customerchurnpreddiction" target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
       </LinksContainer>
     </ProjectCard>
     
@@ -206,7 +206,7 @@ time, enabling data-driven decision-making and improved business visibility.
       </Description>
       <TechStack>Tech Stack: MySQL Sever, PowerBI</TechStack>
       <LinksContainer>
-        <Link href="https://github.com/apoorvtripathi1999/bi_reports/blob/main/doordash.pdf" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+        <Link href="https://github.com/apoorvtripathi1999/bi_reports/blob/main/doordash.pdf" target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
       </LinksContainer>
     </ProjectCard>
     
@@ -220,8 +220,8 @@ iris species, providing a user-friendly interface for real-time predictions.
       </Description>
       <TechStack>Tech Stack: Python, Machine Learning Techniques, Streamlit</TechStack>
       <LinksContainer>
-        <Link href="https://iris-classification-v4hjbnlnwm2noqhedlxbjr.streamlit.app/" onClick={(e) => e.preventDefault()}>App Store</Link>
-        <Link href="https://github.com/apoorvtripathi1999/iris-classification" onClick={(e) => e.preventDefault()}>GitHub Repository</Link>
+        <Link href="https://iris-classification-v4hjbnlnwm2noqhedlxbjr.streamlit.app/" target="_blank" rel="noopener noreferrer">App Store</Link>
+        <Link href="https://github.com/apoorvtripathi1999/iris-classification" target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
       </LinksContainer>
     </ProjectCard>
   </Wrapper>
