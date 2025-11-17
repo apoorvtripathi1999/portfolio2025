@@ -6,67 +6,67 @@ const appConfigs = {
   education: {
     appId: 'education',
     title: 'Education',
-    icon: '/src/assets/icons/education.svg',
+    icon: '/icons/education.svg',
     defaultSize: { width: 600, height: 400 }
   },
   workExperience: {
     appId: 'workExperience',
     title: 'Work Experience',
-    icon: '/src/assets/icons/briefcase.svg',
+    icon: '/icons/briefcase.svg',
     defaultSize: { width: 700, height: 500 }
   },
   technologies: {
     appId: 'technologies',
     title: 'Technologies',
-    icon: '/src/assets/icons/computer.svg',
+    icon: '/icons/computer.svg',
     defaultSize: { width: 650, height: 450 }
   },
   projects: {
     appId: 'projects',
     title: 'Projects',
-    icon: '/src/assets/icons/folder.svg',
+    icon: '/icons/folder.svg',
     defaultSize: { width: 800, height: 600 }
   },
   about: {
     appId: 'about',
     title: 'About Me',
-    icon: '/src/assets/icons/user.svg',
+    icon: '/icons/user.svg',
     defaultSize: { width: 500, height: 400 }
   },
   articles: {
     appId: 'articles',
     title: 'Articles',
-    icon: '/src/assets/icons/document.svg',
+    icon: '/icons/document.svg',
     defaultSize: { width: 600, height: 500 }
   },
   research: {
     appId: 'research',
     title: 'Research',
-    icon: '/src/assets/icons/research.svg',
+    icon: '/icons/research.svg',
     defaultSize: { width: 700, height: 550 }
   },
   youtube: {
     appId: 'youtube',
     title: 'YouTube Channel',
-    icon: '/src/assets/icons/youtube.svg',
+    icon: '/icons/youtube.svg',
     defaultSize: { width: 600, height: 400 }
   },
   pong: {
     appId: 'pong',
     title: 'Pong',
-    icon: '/src/assets/icons/pong.svg',
+    icon: '/icons/pong.svg',
     defaultSize: { width: 640, height: 480 }
   },
   music: {
     appId: 'music',
     title: 'Music',
-    icon: '/src/assets/icons/music.svg',
+    icon: '/icons/music.svg',
     defaultSize: { width: 550, height: 350 }
   },
   resume: {
     appId: 'resume',
     title: 'Resume',
-    icon: '/src/assets/icons/resume.svg',
+    icon: '/icons/resume.svg',
     defaultSize: { width: 700, height: 500 }
   }
 };

@@ -172,17 +172,17 @@ const MobileHome = () => {
   }, []);
 
   const apps = [
-    { id: 'education', title: 'Education', icon: '/src/assets/icons/education.svg', color: theme.colors.accents.neonGreen },
-    { id: 'workExperience', title: 'Work', icon: '/src/assets/icons/briefcase.svg', color: theme.colors.accents.electricBlue },
-    { id: 'technologies', title: 'Tech', icon: '/src/assets/icons/computer.svg', color: theme.colors.accents.hotPink },
-    { id: 'projects', title: 'Projects', icon: '/src/assets/icons/folder.svg', color: theme.colors.accents.cyberYellow, wide: true },
-    { id: 'about', title: 'About Me', icon: '/src/assets/icons/user.svg', color: theme.colors.accents.acidOrange },
-    { id: 'articles', title: 'Articles', icon: '/src/assets/icons/document.svg', color: theme.colors.accents.toxicPurple },
-    { id: 'research', title: 'Research', icon: '/src/assets/icons/research.svg', color: theme.colors.accents.laserRed },
-    { id: 'youtube', title: 'YouTube', icon: '/src/assets/icons/youtube.svg', color: theme.colors.accents.hotPink },
-    { id: 'resume', title: 'Resume', icon: '/src/assets/icons/resume.svg', color: '#FF6B35' },
-    { id: 'pong', title: 'Pong', icon: '/src/assets/icons/pong.svg', color: '#00FFFF' },
-    { id: 'music', title: 'Music', icon: '/src/assets/icons/music.svg', color: '#FF9900', wide: true },
+    { id: 'education', title: 'Education', icon: '/icons/education.svg', color: theme.colors.accents.neonGreen },
+    { id: 'workExperience', title: 'Work', icon: '/icons/briefcase.svg', color: theme.colors.accents.electricBlue },
+    { id: 'technologies', title: 'Tech', icon: '/icons/computer.svg', color: theme.colors.accents.hotPink },
+    { id: 'projects', title: 'Projects', icon: '/icons/folder.svg', color: theme.colors.accents.cyberYellow, wide: true },
+    { id: 'about', title: 'About Me', icon: '/icons/user.svg', color: theme.colors.accents.acidOrange },
+    { id: 'articles', title: 'Articles', icon: '/icons/document.svg', color: theme.colors.accents.toxicPurple },
+    { id: 'research', title: 'Research', icon: '/icons/research.svg', color: theme.colors.accents.laserRed },
+    { id: 'youtube', title: 'YouTube', icon: '/icons/youtube.svg', color: theme.colors.accents.hotPink },
+    { id: 'resume', title: 'Resume', icon: '/icons/resume.svg', color: '#FF6B35' },
+    { id: 'pong', title: 'Pong', icon: '/icons/pong.svg', color: '#00FFFF' },
+    { id: 'music', title: 'Music', icon: '/icons/music.svg', color: '#FF9900', wide: true },
   ];
 
   if (openApp) {

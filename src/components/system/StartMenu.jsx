@@ -201,17 +201,17 @@ const StartMenu = () => {
   const { openWindow, closeStartMenu, logOff, powerOff } = useWindowsStore();
 
   const portfolioItems = [
-    { appId: 'education', title: 'Education', icon: '/src/assets/icons/education.svg' },
-    { appId: 'workExperience', title: 'Work Experience', icon: '/src/assets/icons/briefcase.svg' },
-    { appId: 'technologies', title: 'Technologies', icon: '/src/assets/icons/computer.svg' },
-    { appId: 'projects', title: 'Projects', icon: '/src/assets/icons/folder.svg' },
-    { appId: 'about', title: 'About Me', icon: '/src/assets/icons/user.svg' },
-    { appId: 'articles', title: 'Articles', icon: '/src/assets/icons/document.svg' },
-    { appId: 'research', title: 'Research', icon: '/src/assets/icons/research.svg' },
-    { appId: 'youtube', title: 'YouTube Channel', icon: '/src/assets/icons/youtube.svg' },
-    { appId: 'resume', title: 'Resume', icon: '/src/assets/icons/resume.svg' },
-    { appId: 'pong', title: 'Pong', icon: '/src/assets/icons/pong.svg' },
-    { appId: 'music', title: 'Music', icon: '/src/assets/icons/music.svg' }
+    { appId: 'education', title: 'Education', icon: '/icons/education.svg' },
+    { appId: 'workExperience', title: 'Work Experience', icon: '/icons/briefcase.svg' },
+    { appId: 'technologies', title: 'Technologies', icon: '/icons/computer.svg' },
+    { appId: 'projects', title: 'Projects', icon: '/icons/folder.svg' },
+    { appId: 'about', title: 'About Me', icon: '/icons/user.svg' },
+    { appId: 'articles', title: 'Articles', icon: '/icons/document.svg' },
+    { appId: 'research', title: 'Research', icon: '/icons/research.svg' },
+    { appId: 'youtube', title: 'YouTube Channel', icon: '/icons/youtube.svg' },
+    { appId: 'resume', title: 'Resume', icon: '/icons/resume.svg' },
+    { appId: 'pong', title: 'Pong', icon: '/icons/pong.svg' },
+    { appId: 'music', title: 'Music', icon: '/icons/music.svg' }
   ];
 
   const systemItems = [
@@ -231,9 +231,9 @@ const StartMenu = () => {
       <LeftColumn>
         <UserHeader>
           <UserAvatar>
-            <img src="/src/assets/images/profile-pic.jpg" alt="Profile" />
+            <img src="/images/profile-pic.jpg" alt="Profile" />
           </UserAvatar>
-          <UserName>Apoorv Tripathi</UserName>
+          <UserName>Portfolio User</UserName>
         </UserHeader>
         
         <PinnedList>

@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
     cursor: default;
     /* Desktop wallpaper with Neo-Brutalist overlay */
     background-image: 
-      url('/src/assets/images/final journey.png'),
+      url('/images/final journey.png'),
       radial-gradient(circle at 25px 25px, rgba(0, 255, 65, 0.05) 2%, transparent 50%),
       radial-gradient(circle at 75px 75px, rgba(0, 102, 255, 0.03) 1%, transparent 50%);
     background-size: cover, 100px 100px, 100px 100px;
