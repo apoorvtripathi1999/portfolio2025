@@ -2,7 +2,6 @@
   "name": "portfolio-studio",
   "private": true,
   "version": "1.0.0",
-  "type": "module",
   "description": "Sanity Studio CMS for Apoorv Tripathi's Portfolio",
   "scripts": {
     "dev": "sanity dev",
