@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import client from '../../lib/sanityClient';
+import { EDUCATION_QUERY } from '../../lib/queries';
+import LoadingState from '../shared/LoadingState';
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -31,7 +34,7 @@ const EducationCard = styled.div`
   padding: 20px;
   margin-bottom: 20px;
   transition: ${theme.animations.normal};
-  
+
   &:hover {
     transform: translate(-2px, -2px);
     box-shadow: 8px 8px 0px ${theme.colors.accents.electricBlue};
@@ -75,9 +78,8 @@ const Description = styled.p`
   margin: 12px 0;
   color: ${theme.colors.text.primary};
   border-left: 4px solid ${theme.colors.accents.cyberYellow};
-  padding-left: 16px;
-  background: rgba(255, 255, 0, 0.05);
   padding: 12px 16px;
+  background: rgba(255, 255, 0, 0.05);
 `;
 
 const List = styled.ul`
@@ -95,53 +97,77 @@ const ListItem = styled.li`
   background: rgba(0, 102, 255, 0.1);
   border-left: 4px solid ${theme.colors.accents.electricBlue};
   position: relative;
-  
+
   &:before {
-    content: "▶";
+    content: '▶';
     color: ${theme.colors.accents.electricBlue};
     font-weight: bold;
     margin-right: 8px;
   }
 `;
 
-const EducationContent = () => (
-  <Wrapper>
-    <SectionTitle>Education</SectionTitle>
-    
-    <EducationCard>
-      <DegreeTitle>Master of Science in Computer Science</DegreeTitle>
-      <Institution>Florida Atlantic University</Institution>
-      <DateRange>2024 - 2026</DateRange>
-      <Description>
-        Specialized in Artificial Intelligence and Machine Learning with focus on Machine Learning applications.
-      </Description>
-      <List>
-        <ListItem>GPA: 3.78/4.0</ListItem>
-        <ListItem>Thesis: "Multi-RAG based Named Entity Recognition on clinical data using Large Language Models"</ListItem>
-        <ListItem>Relevant Coursework: Data Structures, Algorithms, Machine Learning, Data Science, Artificial Intellegence, Deep Learning, Generative AI, Database Management</ListItem>
-      </List>
-    </EducationCard>
-    
-    <EducationCard>
-      <DegreeTitle>Bachelor of Technology in Infromation Technology</DegreeTitle>
-      <Institution>SRM University</Institution>
-      <DateRange>2017 - 2021</DateRange>
-      <Description>
-        Comprehensive program covering computer science fundaments, system design and architechure.
-      </Description>
-      <List>
-        <ListItem>GPA: 2.72/4.0</ListItem>
-        <ListItem>Senior Project: "Farm monitoring system using arduino based IOT"</ListItem>
-      </List>
-    </EducationCard>
-    
-    <EducationCard>
-      <DegreeTitle>Certifications</DegreeTitle>
-      <List>
-        <ListItem>Codepath Intro to technical interview prep (2025)</ListItem>
-      </List>
-    </EducationCard>
-  </Wrapper>
-);
+const EducationContent = () => {
+  const [entries, setEntries] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    client
+      .fetch(EDUCATION_QUERY)
+      .then((result) => {
+        setEntries(result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading || error || entries.length === 0) {
+    return (
+      <Wrapper>
+        <SectionTitle>Education</SectionTitle>
+        <LoadingState
+          loading={loading}
+          error={error}
+          empty={!loading && !error && entries.length === 0}
+          emptyMessage="Add 'Education' documents in Sanity Studio."
+        />
+      </Wrapper>
+    );
+  }
+
+  return (
+    <Wrapper>
+      <SectionTitle>Education</SectionTitle>
+      {entries.map((edu) => (
+        <EducationCard key={edu._id}>
+          <DegreeTitle>{edu.degree}</DegreeTitle>
+          {edu.institution && <Institution>{edu.institution}</Institution>}
+          {(edu.startYear || edu.endYear) && (
+            <DateRange>
+              {edu.startYear}{edu.endYear ? ` - ${edu.endYear}` : ''}
+            </DateRange>
+          )}
+          {edu.description && <Description>{edu.description}</Description>}
+          {edu.highlights && edu.highlights.length > 0 && (
+            <List>
+              {edu.gpa && <ListItem>GPA: {edu.gpa}</ListItem>}
+              {edu.highlights.map((h, i) => (
+                <ListItem key={i}>{h}</ListItem>
+              ))}
+            </List>
+          )}
+          {!edu.highlights && edu.gpa && (
+            <List>
+              <ListItem>GPA: {edu.gpa}</ListItem>
+            </List>
+          )}
+        </EducationCard>
+      ))}
+    </Wrapper>
+  );
+};
 
 export default EducationContent;

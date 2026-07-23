@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import client from '../../lib/sanityClient';
+import { MUSIC_QUERY } from '../../lib/queries';
+import LoadingState from '../shared/LoadingState';
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -32,12 +35,12 @@ const TrackCard = styled.div`
   margin-bottom: 20px;
   transition: ${theme.animations.normal};
   position: relative;
-  
+
   &:hover {
     transform: translate(-2px, -2px);
     box-shadow: 8px 8px 0px ${theme.colors.accents.acidOrange};
   }
-  
+
   &:before {
     content: '♪';
     position: absolute;
@@ -78,14 +81,12 @@ const Description = styled.p`
   margin: 12px 0;
   color: ${theme.colors.text.primary};
   border-left: 4px solid ${theme.colors.accents.electricBlue};
-  padding-left: 16px;
-  background: rgba(0, 102, 255, 0.05);
   padding: 12px 16px;
+  background: rgba(0, 102, 255, 0.05);
 `;
 
 const Link = styled.a`
   font-size: ${theme.typography.sizes.body};
-  color: ${theme.colors.text.primary};
   text-decoration: none;
   cursor: pointer;
   background: ${theme.colors.accents.cyberYellow};
@@ -99,7 +100,7 @@ const Link = styled.a`
   transition: ${theme.animations.fast};
   display: inline-block;
   margin-top: 8px;
-  
+
   &:hover {
     transform: translate(-2px, -2px);
     box-shadow: 5px 5px 0px ${theme.colors.accents.cyberYellow};
@@ -108,46 +109,61 @@ const Link = styled.a`
   }
 `;
 
-const MusicContent = () => (
-  <Wrapper>
-    <SectionTitle>My Music Playlists</SectionTitle>
-    
-    <TrackCard>
-      <TrackTitle>Roadtrip Time Travel</TrackTitle>
-      <TrackMeta>YouTube Music • Adventure Vibes</TrackMeta>
-      <Description>
-        Perfect soundtrack for long drives and road adventures. A nostalgic journey through time with tracks that make every mile memorable.
-      </Description>
-      <Link href="https://music.youtube.com/playlist?list=PLkhE-imQU2aLDci76TVw-ekGAsKqIrNhy&si=QcTt_V_aqHTbsomG" target="_blank" rel="noopener noreferrer">Listen on YouTube Music</Link>
-    </TrackCard>
-    
-    <TrackCard>
-      <TrackTitle>Rock Anthems</TrackTitle>
-      <TrackMeta>YouTube Music • High Energy</TrackMeta>
-      <Description>
-        Epic rock classics and modern anthems that pump you up. From legendary guitar solos to powerful vocals that never get old.
-      </Description>
-      <Link href="https://music.youtube.com/playlist?list=PLkhE-imQU2aL5OyFSS78H0dGl70X9J1M0&si=Kc4LGL6cedEbU9q6" target="_blank" rel="noopener noreferrer">Listen on YouTube Music</Link>
-    </TrackCard>
-    
-    <TrackCard>
-      <TrackTitle>Bollywood I Listen To When I'm Free</TrackTitle>
-      <TrackMeta>YouTube Music • Chill Bollywood</TrackMeta>
-      <Description>
-        My go-to Bollywood collection for relaxation and leisure time. A mix of soulful melodies, upbeat numbers, and timeless classics.
-      </Description>
-      <Link href="https://music.youtube.com/playlist?list=PLkhE-imQU2aJBE4t_fA39RauhRElKaoBW&si=cN-HS9ynu61jZE4c" target="_blank" rel="noopener noreferrer">Listen on YouTube Music</Link>
-    </TrackCard>
-    
-    <TrackCard>
-      <TrackTitle>Reggae</TrackTitle>
-      <TrackMeta>YouTube • Island Vibes</TrackMeta>
-      <Description>
-        Laid-back reggae rhythms and island vibes to relax and unwind. Smooth grooves and positive energy from the Caribbean music tradition.
-      </Description>
-      <Link href="https://youtube.com/playlist?list=PLkhE-imQU2aJ4FJrr-SyVS3IoJ0fPPxwF&si=7m8H9pkLhUUIBEkc" target="_blank" rel="noopener noreferrer">Listen on YouTube</Link>
-    </TrackCard>
-  </Wrapper>
-);
+const MusicContent = () => {
+  const [playlists, setPlaylists] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    client
+      .fetch(MUSIC_QUERY)
+      .then((result) => {
+        setPlaylists(result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading || error || playlists.length === 0) {
+    return (
+      <Wrapper>
+        <SectionTitle>My Music Playlists</SectionTitle>
+        <LoadingState
+          loading={loading}
+          error={error}
+          empty={!loading && !error && playlists.length === 0}
+          emptyMessage="Add 'Music Playlist' documents in Sanity Studio."
+        />
+      </Wrapper>
+    );
+  }
+
+  return (
+    <Wrapper>
+      <SectionTitle>My Music Playlists</SectionTitle>
+      {playlists.map((playlist) => (
+        <TrackCard key={playlist._id}>
+          <TrackTitle>{playlist.title}</TrackTitle>
+          {(playlist.platform || playlist.mood) && (
+            <TrackMeta>
+              {playlist.platform}{playlist.platform && playlist.mood ? ' • ' : ''}{playlist.mood}
+            </TrackMeta>
+          )}
+          {playlist.description && (
+            <Description>{playlist.description}</Description>
+          )}
+          {playlist.url && (
+            <Link href={playlist.url} target="_blank" rel="noopener noreferrer">
+              Listen Now
+            </Link>
+          )}
+        </TrackCard>
+      ))}
+    </Wrapper>
+  );
+};
 
 export default MusicContent;

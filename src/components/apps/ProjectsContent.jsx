@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import client from '../../lib/sanityClient';
+import { PROJECTS_QUERY } from '../../lib/queries';
+import LoadingState from '../shared/LoadingState';
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -31,7 +34,7 @@ const ProjectCard = styled.div`
   padding: 20px;
   margin-bottom: 20px;
   transition: ${theme.animations.normal};
-  
+
   &:hover {
     transform: translate(-2px, -2px);
     box-shadow: 8px 8px 0px ${theme.colors.accents.cyberYellow};
@@ -67,9 +70,8 @@ const Description = styled.p`
   margin: 12px 0;
   color: ${theme.colors.text.primary};
   border-left: 4px solid ${theme.colors.accents.electricBlue};
-  padding-left: 16px;
-  background: rgba(0, 102, 255, 0.05);
   padding: 12px 16px;
+  background: rgba(0, 102, 255, 0.05);
 `;
 
 const TechStack = styled.div`
@@ -92,7 +94,6 @@ const LinksContainer = styled.div`
 
 const Link = styled.a`
   font-size: ${theme.typography.sizes.body};
-  color: ${theme.colors.text.primary};
   text-decoration: none;
   cursor: pointer;
   background: ${theme.colors.accents.acidOrange};
@@ -104,7 +105,7 @@ const Link = styled.a`
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: ${theme.animations.fast};
-  
+
   &:hover {
     transform: translate(-2px, -2px);
     box-shadow: 5px 5px 0px ${theme.colors.accents.acidOrange};
@@ -113,118 +114,75 @@ const Link = styled.a`
   }
 `;
 
-const ProjectsContent = () => (
-  <Wrapper>
-    <SectionTitle>Featured Projects</SectionTitle>
+const ProjectsContent = () => {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-      <ProjectCard>
-      <ProjectTitle>Multi agent reinforcement learning for dynamic pricing.</ProjectTitle>
-      <ProjectMeta>2025 • Multi Agent Reinforcement Learning</ProjectMeta>
-      <Description>
-        Optimizing dynamic pricing in applications like flight prices, carpooling prices, product pricing in e-commerce, ticketing in sports/events etc.
-      </Description>
-      <TechStack>Tech Stack: Multi Agent AI, Python, Reinforcement Learning, LLM, Huggingface</TechStack>
-      <LinksContainer>
-        <Link href="https://github.com/apoorvtripathi1999/Multi-agent-RL-for-dynamic-pricing." target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
-      </LinksContainer>
-    </ProjectCard>
+  useEffect(() => {
+    client
+      .fetch(PROJECTS_QUERY)
+      .then((result) => {
+        setProjects(result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
 
-      <ProjectCard>
-      <ProjectTitle>Multi RAG based Named Entity Recognition on clinical data using LLM</ProjectTitle>
-      <ProjectMeta>2025 • Natural Language Processing on medical data</ProjectMeta>
-      <Description>
-        Utilizing a multi RAG based framework for indetification of entities from clinical data. This multi RAG based application uses LLM for classification and chain of thought as prompting technique.
-      </Description>
-      <TechStack>Tech Stack: NLP, Python, RAH, LLM, Huggingface</TechStack>
-      <LinksContainer>
-        <Link href="https://github.com/apoorvtripathi1999/named-entity-recognition" target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
-      </LinksContainer>
-    </ProjectCard>
+  if (loading || error || projects.length === 0) {
+    return (
+      <Wrapper>
+        <SectionTitle>Featured Projects</SectionTitle>
+        <LoadingState
+          loading={loading}
+          error={error}
+          empty={!loading && !error && projects.length === 0}
+          emptyMessage="Add 'Project' documents in Sanity Studio."
+        />
+      </Wrapper>
+    );
+  }
 
-        <ProjectCard>
-      <ProjectTitle>AI agent for classification and scheduling customer support queries as tasks</ProjectTitle>
-      <ProjectMeta>2025 • AI chat application</ProjectMeta>
-      <Description>
-        This application used a deep neural network for identification of the symantics of the support query and then uses langchain based AI agent for scheduling tasks for solving the support queries.
-      </Description>
-      <TechStack>Tech Stack: Keras, Python, FastAPI, Langchain, LLM</TechStack>
-      <LinksContainer>
-        <Link href="https://github.com/apoorvtripathi1999/custsupport" target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
-      </LinksContainer>
-    </ProjectCard>
-
-        <ProjectCard>
-      <ProjectTitle>Deep Neural Network for identification of construction defects</ProjectTitle>
-      <ProjectMeta>2025 • Deep Learning Application</ProjectMeta>
-      <Description>
-        A deep neural network which can be employed as a service through an API. The model detects defects during coonstruction.
-      </Description>
-      <TechStack>Tech Stack: Tensorflow, Keras, FastAPI, Python</TechStack>
-      <LinksContainer>
-        <Link href="https://github.com/apoorvtripathi1999/construction-defects" target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
-      </LinksContainer>
-    </ProjectCard>
-    
-    <ProjectCard>
-      <ProjectTitle>Housing Price Prediction using Ensemble Regression and Hyperparameter Optimization
-</ProjectTitle>
-      <ProjectMeta>2025 • Machine Learning</ProjectMeta>
-      <Description>
-        Built an end-to-end machine learning pipeline for housing price prediction, incorporating data cleaning,
-outlier handling, scaling, feature selection, ensemble modeling, cross-validation, and hyperparameter
-tuning—boosting model R² score from 0.67 to 0.90.
-      </Description>
-      <TechStack>Tech Stack: Python, Scikit-Learn, Machine Learning</TechStack>
-      <LinksContainer>
-        <Link href="https://predictprice-9qtr.onrender.com/" target="_blank" rel="noopener noreferrer">View Live Demo</Link>
-        <Link href="https://github.com/apoorvtripathi1999/housingprice" target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
-      </LinksContainer>
-    </ProjectCard>
-    
-    <ProjectCard>
-      <ProjectTitle>Machine Learning Microservice for Customer Churn Probability Estimation</ProjectTitle>
-      <ProjectMeta>2025 • Machine Learning Microservice</ProjectMeta>
-      <Description>
-        Developed a machine learning microservice to predict customer churn probabilities, exposing model
-outputs via REST APIs for seamless integration with client applications and proactive retention
-strategies.
-      </Description>
-      <TechStack>Tech Stack: Python, Machine Learning, Pydantic, FastAPI</TechStack>
-      <LinksContainer>
-        <Link href="https://github.com/apoorvtripathi1999/customerchurnpreddiction" target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
-      </LinksContainer>
-    </ProjectCard>
-    
-    <ProjectCard>
-      <ProjectTitle>Real-Time Analytics Dashboard in Power BI for Sales, Inventory, and
-Marketing
-</ProjectTitle>
-      <ProjectMeta>2024 • Data Visualization</ProjectMeta>
-      <Description>
-       Developed an interactive Power BI dashboard to monitor sales, inventory, and marketing metrics in real
-time, enabling data-driven decision-making and improved business visibility.
-      </Description>
-      <TechStack>Tech Stack: MySQL Sever, PowerBI</TechStack>
-      <LinksContainer>
-        <Link href="https://github.com/apoorvtripathi1999/bi_reports/blob/main/doordash.pdf" target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
-      </LinksContainer>
-    </ProjectCard>
-    
-    <ProjectCard>
-      <ProjectTitle>Streamlit Web Application for Iris Species Prediction
-</ProjectTitle>
-      <ProjectMeta>2024 • Machine Learning Application</ProjectMeta>
-      <Description>
-        Built an interactive web application using Streamlit that leverages a machine learning model to classify
-iris species, providing a user-friendly interface for real-time predictions.
-      </Description>
-      <TechStack>Tech Stack: Python, Machine Learning Techniques, Streamlit</TechStack>
-      <LinksContainer>
-        <Link href="https://iris-classification-v4hjbnlnwm2noqhedlxbjr.streamlit.app/" target="_blank" rel="noopener noreferrer">App Store</Link>
-        <Link href="https://github.com/apoorvtripathi1999/iris-classification" target="_blank" rel="noopener noreferrer">GitHub Repository</Link>
-      </LinksContainer>
-    </ProjectCard>
-  </Wrapper>
-);
+  return (
+    <Wrapper>
+      <SectionTitle>Featured Projects</SectionTitle>
+      {projects.map((project) => (
+        <ProjectCard key={project._id}>
+          <ProjectTitle>{project.title}</ProjectTitle>
+          {(project.year || project.category) && (
+            <ProjectMeta>
+              {project.year && `${project.year}`}
+              {project.year && project.category && ' • '}
+              {project.category && project.category}
+            </ProjectMeta>
+          )}
+          {project.description && (
+            <Description>{project.description}</Description>
+          )}
+          {project.techStack && project.techStack.length > 0 && (
+            <TechStack>Tech Stack: {project.techStack.join(', ')}</TechStack>
+          )}
+          {(project.githubUrl || project.liveUrl) && (
+            <LinksContainer>
+              {project.liveUrl && (
+                <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                  View Live Demo
+                </Link>
+              )}
+              {project.githubUrl && (
+                <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                  GitHub Repository
+                </Link>
+              )}
+            </LinksContainer>
+          )}
+        </ProjectCard>
+      ))}
+    </Wrapper>
+  );
+};
 
 export default ProjectsContent;

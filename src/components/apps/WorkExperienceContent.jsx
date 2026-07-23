@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import client from '../../lib/sanityClient';
+import { WORK_EXPERIENCE_QUERY } from '../../lib/queries';
+import LoadingState from '../shared/LoadingState';
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -70,9 +73,8 @@ const Description = styled.p`
   margin: 12px 0;
   color: ${theme.colors.text.primary};
   border-left: 4px solid ${theme.colors.accents.electricBlue};
-  padding-left: 16px;
-  background: rgba(0, 102, 255, 0.05);
   padding: 12px 16px;
+  background: rgba(0, 102, 255, 0.05);
 `;
 
 const List = styled.ul`
@@ -90,80 +92,72 @@ const ListItem = styled.li`
   background: rgba(255, 0, 128, 0.1);
   border-left: 4px solid ${theme.colors.accents.hotPink};
   position: relative;
-  
+
   &:before {
-    content: "▶";
+    content: '▶';
     color: ${theme.colors.accents.hotPink};
     font-weight: bold;
     margin-right: 8px;
   }
 `;
 
-const WorkExperienceContent = () => (
-  <Wrapper>
-    <SectionTitle>Work Experience</SectionTitle>
+const WorkExperienceContent = () => {
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    <JobCard>
-      <JobTitle>Lead QA/DataScience Intern</JobTitle>
-      <Company>Kahani - Wilmington, DE, Remote</Company>
-      <DateRange>OCT 2025 - Present</DateRange>
-      <Description>
-        QA and Data Science intern, working on setting up the data infrastructure for early stage startup.
-      </Description>
-      <List>
-        <ListItem>Design and implement Kahani's data infrastructure for Pilot 2 and beyond working on event tracking, schema
-design, pipelines with Firebase, Pub/Sub, BigQuery, dashboards.
-</ListItem>
-        <ListItem> Define and monitor core product metrics like engagement, retention, symptom improvement to
-evaluate product-market fit.</ListItem>
-      </List>
-    </JobCard>
+  useEffect(() => {
+    client
+      .fetch(WORK_EXPERIENCE_QUERY)
+      .then((result) => {
+        setJobs(result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
 
-    <JobCard>
-      <JobTitle>Product Operations Manager</JobTitle>
-      <Company>Allen Digital Private Limited - Bengaluru, India</Company>
-      <DateRange>JAN 2024 - JUN 2024</DateRange>
-      <Description>
-        Worked alongside the product and tech teams to manage and own product development cycles and feature adherence.
-      </Description>
-      <List>
-        <ListItem>Improved the non-tech queries turn around time to an average of 2 days from a week through constant monitoring and maintaining the issue tracking analytics.</ListItem>
-        <ListItem>Managed operations for 1000+ cohorts, ensuring regular metrics adharence and proper documentation.</ListItem>
-      </List>
-    </JobCard>
-    
-    <JobCard>
-      <JobTitle>Program Manager</JobTitle>
-      <Company>Heycoach - Bengaluru, India</Company>
-      <DateRange>APR 2023 - DEC 2023</DateRange>
-      <Description>
-        Progam manager worked with teams on special projects for an early stage startup.
-      </Description>
-      <List>
-        <ListItem>Led engagement initiatives, creating SOPs that enhanced cross-team communication.</ListItem>
-        <ListItem>Set up and managed a B2B team onboarding 65+ high-value clients during the first month.</ListItem>
-        <ListItem>Managed the development of a feature for the platform called DSA Visualizer.
-</ListItem>
-      </List>
-    </JobCard>
-    
-    <JobCard>
-      <JobTitle>Operations Associate</JobTitle>
-      <Company>Newton School - Bengaluru, India</Company>
-      <DateRange>Nov 2021 - Mar 2023</DateRange>
-      <Description>
-        Associate in operations management, worked with multiple teams for improving the operations efficiency for early-stage startup.
-      </Description>
-      <List>
-        <ListItem>Prepared students for job interviews through analytics and other resources, resulting in 600+
-conversions during the year 2020 to 2021.</ListItem>
-        <ListItem>Boosted student experience scores (NPS) by 40% through process improvements and feedback
-analysis.
-</ListItem>
-        <ListItem>Managed a team of support associates improving student outreach to around 90%.</ListItem>
-      </List>
-    </JobCard>
-  </Wrapper>
-);
+  if (loading || error || jobs.length === 0) {
+    return (
+      <Wrapper>
+        <SectionTitle>Work Experience</SectionTitle>
+        <LoadingState
+          loading={loading}
+          error={error}
+          empty={!loading && !error && jobs.length === 0}
+          emptyMessage="Add 'Work Experience' documents in Sanity Studio."
+        />
+      </Wrapper>
+    );
+  }
+
+  return (
+    <Wrapper>
+      <SectionTitle>Work Experience</SectionTitle>
+      {jobs.map((job) => (
+        <JobCard key={job._id}>
+          <JobTitle>{job.jobTitle}</JobTitle>
+          <Company>
+            {job.company}{job.location ? ` — ${job.location}` : ''}
+          </Company>
+          <DateRange>
+            {job.startDate}
+            {job.isCurrent ? ' — Present' : job.endDate ? ` — ${job.endDate}` : ''}
+          </DateRange>
+          {job.description && <Description>{job.description}</Description>}
+          {job.bullets && job.bullets.length > 0 && (
+            <List>
+              {job.bullets.map((bullet, i) => (
+                <ListItem key={i}>{bullet}</ListItem>
+              ))}
+            </List>
+          )}
+        </JobCard>
+      ))}
+    </Wrapper>
+  );
+};
 
 export default WorkExperienceContent;

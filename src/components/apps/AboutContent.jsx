@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import client from '../../lib/sanityClient';
+import { ABOUT_QUERY } from '../../lib/queries';
+import LoadingState from '../shared/LoadingState';
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -37,11 +40,44 @@ const Description = styled.p`
   box-shadow: 4px 4px 0px rgba(0, 255, 65, 0.2);
 `;
 
-const AboutContent = () => (
-  <Wrapper>
-    <SectionTitle>About Me</SectionTitle>
-    <Description>Data Science Intern currently persuing a Master's student in Computer Science at Florida Atlantic University GPA: 3.7/4.0, with a Bachelor's in Information Technology from SRM Institute GPA: 6.8/10. With hands-on experience in machine learning, AI, and data infrastructure, including leading data projects at Kahani and prior roles in operations and program management, where I improved workflows, NPS scores, and team efficiency. My projects include ML microservices for churn prediction using FastAPI/REST APIs, ensemble regression for housing prices, Power BI dashboards for real-time analytics, and Streamlit apps for predictions. Skilled in Python, SQL, sklearn, NLP, LLMs, HuggingFace, Langchain, AWS, Docker, Git, and data visualization, with strong communication and stakeholder management abilities.</Description>
-  </Wrapper>
-);
+const AboutContent = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    client
+      .fetch(ABOUT_QUERY)
+      .then((result) => {
+        setData(result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading || error || !data) {
+    return (
+      <Wrapper>
+        <SectionTitle>About Me</SectionTitle>
+        <LoadingState
+          loading={loading}
+          error={error}
+          empty={!loading && !error && !data}
+          emptyMessage="Add an 'About Me' document in Sanity Studio."
+        />
+      </Wrapper>
+    );
+  }
+
+  return (
+    <Wrapper>
+      <SectionTitle>About Me</SectionTitle>
+      <Description>{data.bioText}</Description>
+    </Wrapper>
+  );
+};
 
 export default AboutContent;

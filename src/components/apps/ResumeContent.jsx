@@ -1,46 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import theme from '../../styles/theme';
-import resumePDF from '../../assets/resume/Apoorv Tripathi Resume dec 2025.pdf';
+import client from '../../lib/sanityClient';
+import { RESUME_QUERY } from '../../lib/queries';
+import LoadingState from '../shared/LoadingState';
 
 const slideDown = keyframes`
-  from { 
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to { 
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(-20px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
 `;
 
 const pulseGlow = keyframes`
-  0%, 100% { 
-    box-shadow: 0 0 20px ${theme.colors.accents.neonGreen};
-  }
-  50% { 
-    box-shadow: 0 0 40px ${theme.colors.accents.neonGreen}, 0 0 60px ${theme.colors.accents.electricBlue};
-  }
+  0%, 100% { box-shadow: 0 0 20px ${theme.colors.accents.neonGreen}; }
+  50%       { box-shadow: 0 0 40px ${theme.colors.accents.neonGreen}, 0 0 60px ${theme.colors.accents.electricBlue}; }
 `;
 
 const downloadProgress = keyframes`
-  0% { width: 0%; }
+  0%   { width: 0%; }
   100% { width: 100%; }
 `;
 
 const bounce = keyframes`
-  0%, 20%, 53%, 80%, 100% {
-    transform: translate3d(0, 0, 0);
-  }
-  40%, 43% {
-    transform: translate3d(0, -10px, 0);
-  }
-  70% {
-    transform: translate3d(0, -5px, 0);
-  }
-  90% {
-    transform: translate3d(0, -2px, 0);
-  }
+  0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
+  40%, 43%                 { transform: translate3d(0,-10px,0); }
+  70%                      { transform: translate3d(0,-5px,0); }
+  90%                      { transform: translate3d(0,-2px,0); }
 `;
 
 const ResumeContainer = styled.div`
@@ -99,23 +83,20 @@ const ResumePreview = styled.div`
   background: ${theme.colors.global.background};
   border: 4px solid ${theme.colors.accents.electricBlue};
   border-radius: 4px;
-  padding: 0;
   min-height: 600px;
   height: 70vh;
   box-shadow: 6px 6px 0px ${theme.colors.accents.electricBlue};
   position: relative;
   overflow: hidden;
-  
+
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     height: 4px;
-    background: linear-gradient(90deg, 
-      ${theme.colors.accents.neonGreen}, 
-      ${theme.colors.accents.electricBlue}, 
+    background: linear-gradient(90deg,
+      ${theme.colors.accents.neonGreen},
+      ${theme.colors.accents.electricBlue},
       ${theme.colors.accents.hotPink});
     z-index: 1;
   }
@@ -148,7 +129,7 @@ const DownloadCard = styled.div`
   transition: all ${theme.animations.fast};
   position: relative;
   overflow: hidden;
-  
+
   &:hover {
     transform: translate(-4px, -4px);
     box-shadow: 8px 8px 0px ${theme.colors.global.shadow};
@@ -192,24 +173,21 @@ const DownloadButton = styled.button`
   transition: all ${theme.animations.fast};
   box-shadow: 4px 4px 0px ${theme.colors.global.shadow};
   text-shadow: 1px 1px 0px ${theme.colors.global.shadow};
-  animation: ${props => props.downloading ? pulseGlow : 'none'} 1s ease-in-out infinite;
-  
+  animation: ${(props) => (props.$downloading ? pulseGlow : 'none')} 1s ease-in-out infinite;
+
   &:hover {
     background: ${theme.colors.accents.neonGreen};
     border-color: ${theme.colors.accents.hotPink};
     transform: translate(-2px, -2px);
     box-shadow: 6px 6px 0px ${theme.colors.global.shadow};
   }
-  
+
   &:active {
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0px ${theme.colors.global.shadow};
   }
-  
-  &:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
+
+  &:disabled { opacity: 0.7; cursor: not-allowed; }
 `;
 
 const ProgressBar = styled.div`
@@ -220,14 +198,12 @@ const ProgressBar = styled.div`
   border-radius: 3px;
   overflow: hidden;
   margin-top: 15px;
-  display: ${props => props.show ? 'block' : 'none'};
+  display: ${(props) => (props.$show ? 'block' : 'none')};
 `;
 
 const ProgressFill = styled.div`
   height: 100%;
-  background: linear-gradient(90deg, 
-    ${theme.colors.accents.neonGreen}, 
-    ${theme.colors.accents.electricBlue});
+  background: linear-gradient(90deg, ${theme.colors.accents.neonGreen}, ${theme.colors.accents.electricBlue});
   animation: ${downloadProgress} 2s ease-out forwards;
 `;
 
@@ -242,40 +218,47 @@ const StatusMessage = styled.div`
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
-  display: ${props => props.show ? 'block' : 'none'};
+  display: ${(props) => (props.$show ? 'block' : 'none')};
 `;
 
 const ResumeContent = () => {
-  const [downloadStates, setDownloadStates] = useState({
-    pdf: { downloading: false, progress: false, complete: false },
-    word: { downloading: false, progress: false, complete: false }
+  const [resumeData, setResumeData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [downloadState, setDownloadState] = useState({
+    downloading: false,
+    progress: false,
+    complete: false,
   });
 
-  const handleDownload = (format) => {
-    setDownloadStates(prev => ({
-      ...prev,
-      [format]: { downloading: true, progress: true, complete: false }
-    }));
+  useEffect(() => {
+    client
+      .fetch(RESUME_QUERY)
+      .then((result) => {
+        setResumeData(result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
 
-    // Simulate download process
+  const handleDownload = () => {
+    if (!resumeData?.fileUrl) return;
+    setDownloadState({ downloading: true, progress: true, complete: false });
+
     setTimeout(() => {
-      setDownloadStates(prev => ({
-        ...prev,
-        [format]: { downloading: false, progress: false, complete: true }
-      }));
-      
-      // Create and trigger download
+      setDownloadState({ downloading: false, progress: false, complete: true });
+
       const link = document.createElement('a');
-      link.href = resumePDF;
-      link.download = 'Apoorv_Tripathi_Resume.pdf';
+      link.href = resumeData.fileUrl;
+      link.download = `${resumeData.label || 'Resume'}.pdf`;
+      link.target = '_blank';
       link.click();
-      
-      // Reset status after 3 seconds
+
       setTimeout(() => {
-        setDownloadStates(prev => ({
-          ...prev,
-          [format]: { downloading: false, progress: false, complete: false }
-        }));
+        setDownloadState({ downloading: false, progress: false, complete: false });
       }, 3000);
     }, 2000);
   };
@@ -286,44 +269,57 @@ const ResumeContent = () => {
         <Title>My Resume</Title>
         <Subtitle>Download my latest resume in PDF format</Subtitle>
       </Header>
-      
-      <PreviewSection>
-        <PreviewTitle>Resume Preview</PreviewTitle>
-        <ResumePreview>
-          <PDFEmbed 
-            src={resumePDF}
-            type="application/pdf"
-            title="Apoorv Tripathi Resume"
-          />
-        </ResumePreview>
-      </PreviewSection>
-      
-      <DownloadSection>
-        <PreviewTitle>Download Resume</PreviewTitle>
-        <DownloadGrid>
-          <DownloadCard>
-            <DownloadIcon>📄</DownloadIcon>
-            <DownloadTitle>PDF Format</DownloadTitle>
-            <DownloadDescription>
-              Download my complete resume in PDF format. 
-              Perfect for applications and maintains formatting across all devices.
-            </DownloadDescription>
-            <DownloadButton 
-              downloading={downloadStates.pdf.downloading}
-              onClick={() => handleDownload('pdf')}
-              disabled={downloadStates.pdf.downloading}
-            >
-              {downloadStates.pdf.downloading ? 'Preparing...' : 'Download Resume'}
-            </DownloadButton>
-            <ProgressBar show={downloadStates.pdf.progress}>
-              <ProgressFill />
-            </ProgressBar>
-            <StatusMessage show={downloadStates.pdf.complete}>
-              ✓ Resume Downloaded Successfully!
-            </StatusMessage>
-          </DownloadCard>
-        </DownloadGrid>
-      </DownloadSection>
+
+      {(loading || error || !resumeData) ? (
+        <LoadingState
+          loading={loading}
+          error={error}
+          empty={!loading && !error && !resumeData}
+          emptyMessage="Upload a resume PDF in Sanity Studio under 'Resume'."
+        />
+      ) : (
+        <>
+          <PreviewSection>
+            <PreviewTitle>Resume Preview</PreviewTitle>
+            <ResumePreview>
+              <PDFEmbed
+                src={resumeData.fileUrl}
+                type="application/pdf"
+                title="Resume Preview"
+              />
+            </ResumePreview>
+          </PreviewSection>
+
+          <DownloadSection>
+            <PreviewTitle>Download Resume</PreviewTitle>
+            <DownloadGrid>
+              <DownloadCard>
+                <DownloadIcon>📄</DownloadIcon>
+                <DownloadTitle>PDF Format</DownloadTitle>
+                <DownloadDescription>
+                  Download the latest version of my resume.
+                  {resumeData.updatedAt && (
+                    <><br />Last updated: {new Date(resumeData.updatedAt).toLocaleDateString()}</>
+                  )}
+                </DownloadDescription>
+                <DownloadButton
+                  $downloading={downloadState.downloading}
+                  onClick={handleDownload}
+                  disabled={downloadState.downloading}
+                >
+                  {downloadState.downloading ? 'Preparing...' : 'Download Resume'}
+                </DownloadButton>
+                <ProgressBar $show={downloadState.progress}>
+                  <ProgressFill />
+                </ProgressBar>
+                <StatusMessage $show={downloadState.complete}>
+                  ✓ Resume Downloaded Successfully!
+                </StatusMessage>
+              </DownloadCard>
+            </DownloadGrid>
+          </DownloadSection>
+        </>
+      )}
     </ResumeContainer>
   );
 };

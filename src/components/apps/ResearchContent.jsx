@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import client from '../../lib/sanityClient';
+import { RESEARCH_QUERY } from '../../lib/queries';
+import LoadingState from '../shared/LoadingState';
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -31,7 +34,7 @@ const ResearchCard = styled.div`
   padding: 20px;
   margin-bottom: 20px;
   transition: ${theme.animations.normal};
-  
+
   &:hover {
     transform: translate(-2px, -2px);
     box-shadow: 8px 8px 0px ${theme.colors.accents.laserRed};
@@ -48,7 +51,7 @@ const ResearchTitle = styled.h2`
   letter-spacing: 1px;
 `;
 
-const ResearchMeta = styled.div`
+const StatusBadge = styled.div`
   font-size: ${theme.typography.sizes.body};
   color: ${theme.colors.accents.cyberYellow};
   font-weight: ${theme.typography.weights.bold};
@@ -67,14 +70,12 @@ const Description = styled.p`
   margin: 12px 0;
   color: ${theme.colors.text.primary};
   border-left: 4px solid ${theme.colors.accents.hotPink};
-  padding-left: 16px;
-  background: rgba(255, 0, 128, 0.05);
   padding: 12px 16px;
+  background: rgba(255, 0, 128, 0.05);
 `;
 
 const Link = styled.a`
   font-size: ${theme.typography.sizes.body};
-  color: ${theme.colors.text.primary};
   text-decoration: none;
   cursor: pointer;
   background: ${theme.colors.accents.neonGreen};
@@ -88,7 +89,7 @@ const Link = styled.a`
   transition: ${theme.animations.fast};
   display: inline-block;
   margin-top: 8px;
-  
+
   &:hover {
     transform: translate(-2px, -2px);
     box-shadow: 5px 5px 0px ${theme.colors.accents.neonGreen};
@@ -97,33 +98,65 @@ const Link = styled.a`
   }
 `;
 
-const ResearchContent = () => (
-  <Wrapper>
-    <SectionTitle>Research</SectionTitle>
-    
-    <ResearchCard>
-      <ResearchTitle>Multi Agent Reinforcement learning application in constrained supply chains for dynamic pricing.</ResearchTitle>
-      <Description>
-      This research aims to optimize dynamic pricing in applications like flight prices, carpooling prices, product pricing in e-commerce, ticketing in sports/events etc. This research can also be considered as a study of making automated supply chain decisions and can ultimately influence how decisions are going to be made in automated manufacturing supply chains. 
-      </Description>
-    </ResearchCard>
-    
-    <ResearchCard>
-      <ResearchTitle>Multi-RAG based Named entity recognition for clinical data</ResearchTitle>
-      <Description>
-        This research aims to improve medical Named Entity Recognition by enhancing an existing system that uses Large Language Models and Retrieval Augmented Generation. The study builds upon a foundational model that utilized Dictionary-Infused RAG for zero-shot entity identification using the UMLS database and KATE for one-shot classification. This new work introduces three key enhancements to make the system more reliable, dynamic, and cost-effective. First, it integrates advanced prompting techniques, such as chain of thought and meta prompting, with the existing TANL formatting to improve the LLM's output quality. Second, it adds caching techniques to the RAG system to store previously retrieved information, which significantly reduces the high computational costs and resource demands. Finally, it overcomes a major limitation of the original model by making the system more dynamic; it first classifies the *type* of entity e.g., gene, drug, chemical, and then queries a *respective* database like NCBI gene for genes, to retrieve more accurate context, moving beyond the original's reliance on only UMLS.
-      </Description>
-    </ResearchCard>
+const STATUS_LABELS = {
+  'in-progress': 'In Progress',
+  'published': 'Published',
+  'completed': 'Completed',
+};
 
-      <ResearchCard>
-      <ResearchTitle>IoT Based Smart Farm Monitoring System</ResearchTitle>
-      <Description>
-        The farm monitoring system is a mixture of hardware and software additives. The hardware part includes embedded systems and software program is the Arduino ide.The Arduino ide displays readings from sensors are inserted using the hardware.The special sensors used are temperature and humidity sensor,pir sensor and soil moisture sensor. The facts gathered with the aid of the sensors is sent to the Arduino UNO microcontroller ATmega328.The gathered information may be displayed in a Arduino IDE. A GSM module is hooked up with the Arduino to facilitate messaging service which updates the farmers each 10 seconds approximately the climate conditions of the subject. IV.HARDWARE USED This project is aided with many hardwares. This proposed technology is an amalgamation of different sensors, microcontroller and communication medium to help the farmers to work on their farms.
-      </Description>
-      <Link href="https://www.ijrte.org/wp-content/uploads/papers/v8i4/D8806118419.pdf" onClick={(e) => e.preventDefault()}>View Publication</Link>
-    </ResearchCard>
+const ResearchContent = () => {
+  const [research, setResearch] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  </Wrapper>
-);
+  useEffect(() => {
+    client
+      .fetch(RESEARCH_QUERY)
+      .then((result) => {
+        setResearch(result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading || error || research.length === 0) {
+    return (
+      <Wrapper>
+        <SectionTitle>Research</SectionTitle>
+        <LoadingState
+          loading={loading}
+          error={error}
+          empty={!loading && !error && research.length === 0}
+          emptyMessage="Add 'Research' documents in Sanity Studio."
+        />
+      </Wrapper>
+    );
+  }
+
+  return (
+    <Wrapper>
+      <SectionTitle>Research</SectionTitle>
+      {research.map((item) => (
+        <ResearchCard key={item._id}>
+          <ResearchTitle>{item.title}</ResearchTitle>
+          {item.status && (
+            <StatusBadge>{STATUS_LABELS[item.status] || item.status}</StatusBadge>
+          )}
+          {item.description && (
+            <Description>{item.description}</Description>
+          )}
+          {item.publicationUrl && (
+            <Link href={item.publicationUrl} target="_blank" rel="noopener noreferrer">
+              View Publication
+            </Link>
+          )}
+        </ResearchCard>
+      ))}
+    </Wrapper>
+  );
+};
 
 export default ResearchContent;

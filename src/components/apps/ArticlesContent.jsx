@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import client from '../../lib/sanityClient';
+import { ARTICLES_QUERY } from '../../lib/queries';
+import LoadingState from '../shared/LoadingState';
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -31,7 +34,7 @@ const ArticleCard = styled.div`
   padding: 20px;
   margin-bottom: 20px;
   transition: ${theme.animations.normal};
-  
+
   &:hover {
     transform: translate(-2px, -2px);
     box-shadow: 8px 8px 0px ${theme.colors.accents.toxicPurple};
@@ -67,14 +70,12 @@ const Description = styled.p`
   margin: 12px 0;
   color: ${theme.colors.text.primary};
   border-left: 4px solid ${theme.colors.accents.electricBlue};
-  padding-left: 16px;
-  background: rgba(0, 102, 255, 0.05);
   padding: 12px 16px;
+  background: rgba(0, 102, 255, 0.05);
 `;
 
 const Link = styled.a`
   font-size: ${theme.typography.sizes.body};
-  color: ${theme.colors.text.primary};
   text-decoration: none;
   cursor: pointer;
   background: ${theme.colors.accents.hotPink};
@@ -88,7 +89,7 @@ const Link = styled.a`
   transition: ${theme.animations.fast};
   display: inline-block;
   margin-top: 8px;
-  
+
   &:hover {
     transform: translate(-2px, -2px);
     box-shadow: 5px 5px 0px ${theme.colors.accents.hotPink};
@@ -97,53 +98,60 @@ const Link = styled.a`
   }
 `;
 
-const ArticlesContent = () => (
-  <Wrapper>
-    <SectionTitle>Articles</SectionTitle>
-    
-    <ArticleCard>
-      <ArticleTitle>Does non repetitive code really translates to better performance?</ArticleTitle>
-      <ArticleMeta>Published: July 2025 • 10 min read</ArticleMeta>
-      <Description>We do not have to blindly follow the principles of clean code, as they are suggestions and best practices and does not define the overall context of code. But we should also not ignore the requirement and need for maintainability. We should design better code structure which can work with both performance and maintainability.</Description>
-      <Link href="https://dev.to/apoorvtripathi1999/from-research-to-production-how-i-built-a-customer-churn-prediction-api-that-actually-works-5gdg" onClick={(e) => e.preventDefault()}>Read Article</Link>
-    </ArticleCard>
+const ArticlesContent = () => {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    <ArticleCard>
-      <ArticleTitle>From Research to Production: How I Built a Customer Churn Prediction API That Actually Works</ArticleTitle>
-      <ArticleMeta>Published: July 2025 • 5 min read</ArticleMeta>
-      <Description>
-        Ever wondered how to bridge the gap between your ML experiments and real-world applications? I used to spend days, perfecting machine learning models, only to face the harsh reality that production deployment is a completely different beast.
-      </Description>
-      <Link href="https://dev.to/apoorvtripathi1999/from-research-to-production-how-i-built-a-customer-churn-prediction-api-that-actually-works-5gdg" onClick={(e) => e.preventDefault()}>Read Article</Link>
-    </ArticleCard>
-    
-    <ArticleCard>
-      <ArticleTitle>Custom Transformers Are the Secret to Making ML Pipelines Work in Practice</ArticleTitle>
-      <ArticleMeta>Published: July 2025 • 10 min read</ArticleMeta>
-      <Description>
-        Custom transformers aren't just about code organization—they're about embedding domain knowledge into your ML workflow.
-      </Description>
-      <Link href="https://dev.to/apoorvtripathi1999/custom-transformers-are-the-secret-to-making-ml-pipelines-work-in-practice-i14" onClick={(e) => e.preventDefault()}>Read Article</Link>
-    </ArticleCard>
-    
-    <ArticleCard>
-      <ArticleTitle>The Class Imbalance Problem: How I Achieved 89% Accuracy on Customer Churn Prediction</ArticleTitle>
-      <ArticleMeta>Published: July 2025 • 6 min read</ArticleMeta>
-      <Description>
-        Class imbalance doesn't have to be a death sentence for your ML models. Sometimes the best solution is the simplest: carefully balance your data and let the algorithms do what they do best. In my case, this approach led to an 89% accuracy rate that would have been impossible with the original imbalanced dataset.
-      </Description>
-      <Link href="https://dev.to/apoorvtripathi1999/the-class-imbalance-problem-how-i-achieved-89-accuracy-on-customer-churn-prediction-4chg" onClick={(e) => e.preventDefault()}>Read Article</Link>
-    </ArticleCard>
-    
-    <ArticleCard>
-      <ArticleTitle>API Design That Doesn't Break: How Pydantic Saved My API</ArticleTitle>
-      <ArticleMeta>Published: July 2025 • 5 min read</ArticleMeta>
-      <Description>
-        Good API design isn’t about flashy features—it’s about handling edge cases gracefully and making failure modes predictable.
-      </Description>
-      <Link href="https://dev.to/apoorvtripathi1999/api-design-that-doesnt-break-how-pydantic-saved-my-api-dkp" onClick={(e) => e.preventDefault()}>Read Article</Link>
-    </ArticleCard>
-  </Wrapper>
-);
+  useEffect(() => {
+    client
+      .fetch(ARTICLES_QUERY)
+      .then((result) => {
+        setArticles(result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading || error || articles.length === 0) {
+    return (
+      <Wrapper>
+        <SectionTitle>Articles</SectionTitle>
+        <LoadingState
+          loading={loading}
+          error={error}
+          empty={!loading && !error && articles.length === 0}
+          emptyMessage="Add 'Article' documents in Sanity Studio."
+        />
+      </Wrapper>
+    );
+  }
+
+  return (
+    <Wrapper>
+      <SectionTitle>Articles</SectionTitle>
+      {articles.map((article) => (
+        <ArticleCard key={article._id}>
+          <ArticleTitle>{article.title}</ArticleTitle>
+          <ArticleMeta>
+            Published: {article.publishDate}
+            {article.readTime ? ` • ${article.readTime} min read` : ''}
+          </ArticleMeta>
+          {article.description && (
+            <Description>{article.description}</Description>
+          )}
+          {article.url && (
+            <Link href={article.url} target="_blank" rel="noopener noreferrer">
+              Read Article
+            </Link>
+          )}
+        </ArticleCard>
+      ))}
+    </Wrapper>
+  );
+};
 
 export default ArticlesContent;
